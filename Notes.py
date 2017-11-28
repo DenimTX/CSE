@@ -23,5 +23,3 @@ print("Hello %s." % name)
 age = input("How old are you? ")
 print("Oh, so you're %s years old." % age)
 # print(age)
-
-kappakappakappa
