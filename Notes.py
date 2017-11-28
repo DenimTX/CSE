@@ -27,6 +27,7 @@
 # Change to the file
 
 
+<<<<<<< HEAD
 def print_hw():
     print("Hello World")
 
@@ -50,3 +51,8 @@ def birthday(age):
 say_hi("John")
 print("John is 15. Next year:")
 birthday(15)
+=======
+age = input("How old are you? ")
+print("Oh, so you're %s years old." % age)
+# print(age)
+>>>>>>> b42cc26d56f37d36349f215bc316ca27baf0b393
