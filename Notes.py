@@ -106,3 +106,16 @@
 #
 # import random  # imports should be at the top
 # print(random.randint(0, 6))
+
+# Comparisons
+print(1 == 1)  # Two equal signs to compare
+print(1 != 2)  # One is not equal to 2
+print(not False)  # This prints True
+print(1 == 1 and 4 <= 5)
+print(1 < 0 or 5 > 1)
+
+# Recasting
+c = '1'
+print(c == 1)  # False - C is a string, 1 is an int
+print(int(c) == 1)  # True - Compares two ints
+print(c == str(1))  # True - Compares two strings

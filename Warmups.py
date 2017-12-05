@@ -1,0 +1,40 @@
+# first_name = input("What is your first name?")
+# last_name = input("What is your last name?")
+# print(last_name, first_name)
+
+
+# first_name = input('What is your first name?')
+# last_name = input('What is your last name?')
+#
+#
+# def reverse_order(first_name, last_name):
+#     print("%s %s" % (last_name, first_name))
+
+
+# """Warm up #2
+# Write a function called "happy_bday"
+# that "sings" (prints)
+# the Happy Birthday Song
+#
+# It must take on parameter called "name"
+# """
+#
+#
+# def happy_bday(name):
+#     print("Happy birthday to you,")
+#     print("Happy birthday to you,")
+#     print("Happy birthday dear %s" % name)  # print("Happy birthday dear " + name)    works
+#     print("Happy birthday to you!")
+
+"""
+Write a function called add_py
+that takes one parameter called "name"
+and prints out name.py
+example:
+add_py("I_ate_some") == "I_ate_some.py"
+"""
+
+
+def add_py(name):
+    print("%s.py" % name)  # Solution 1
+    # print(name + ".py")  # Solution 2
