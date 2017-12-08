@@ -50,7 +50,7 @@ def add(num1, num2, num3):
     print(num1 + num2 + num3)
 
 
-add(90, 900, 9000)
+# add(90, 900, 9000)
 
 
 def repeat(string):
@@ -62,3 +62,10 @@ def repeat(string):
 
 for x in range(3):
     print("string")  # prints string three times
+
+
+def date(month, day, year):
+    print(str(month) + "/" + str(day) + "/" + str(year))
+
+
+date(12, 8, 17)

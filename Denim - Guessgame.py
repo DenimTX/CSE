@@ -7,7 +7,6 @@ import random
 # 5) Add 5 guesses
 number = (random.randint(1, 50))
 # print(number)   to know what the number is
-print(number)
 print("I am thinking of a number between 1 and 50.")
 guess = 5
 guesses_made = 0
@@ -23,4 +22,3 @@ while int(guess) != number and guesses_made < 5:
         guesses_made += 1
 if guesses_made >= 5:
     print("\nNo More Tries T.T")
-    print("The number was %" % number)
