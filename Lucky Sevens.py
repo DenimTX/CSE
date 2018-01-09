@@ -1,13 +1,19 @@
 import random
 
+
 money = 15
-dice1 = (random.randint(1, 6))
-dice2 = (random.randint(1, 6))
 
 
-print(dice1)
-print(dice2)
-print(dice1 + dice2)
+while money > 0:
+    dice1 = (random.randint(1, 6))
+    dice2 = (random.randint(1, 6))
+    print(dice1)
+    print(dice2)
 
-if dice1 + dice2 == 7:
-    print(money + 4)
+    roll = (dice1 + dice2)
+
+    if roll == 7:
+        (money + 4)
+    elif roll != 7:
+        (money - 1)
+        print(money)
