@@ -1,9 +1,5 @@
-# # # print("Hello World")
-# # #
-#
-#
-#
-#
+print("Hello World")
+
 # # # print()  # Creates a blank line
 # # # print("See if you can figure this out")
 # # # print(10 % 3)
