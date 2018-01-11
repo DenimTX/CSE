@@ -49,11 +49,11 @@ print("Hello World")
 # # say_hi("John")
 # # print("John is 15. Next year:")
 # # birthday(15)
-# # =======
+# #
 # # age = input("How old are you? ")
 # # print("Oh, so you're %s years old." % age)
 # # # print(age)
-# # >>>>>>> b42cc26d56f37d36349f215bc316ca27baf0b393
+# #
 # # Press Ctrl-A and Ctrl-/
 # # to comment old code
 #
