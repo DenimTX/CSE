@@ -15,7 +15,7 @@ while money > 0:
     played += 1
     if roll == 7:
         money += 4
-        if money > most_money:
+        if money >= most_money:
             most_money = money
             r = played
     elif roll != 7:
@@ -24,4 +24,9 @@ while money > 0:
 
 if money == 0:
     print("You played %s rounds before you lost all your money." % str(played))
-    print("You should've stopped at round %s when you had $ %s" % (r, most_money))
+    if most_money < 15:
+        print("You gained nothing.")
+    elif most_money > 14:
+        print("You should've stopped at round %s when you had $ %s" % (r, most_money))
+
+# Denim Xiong
