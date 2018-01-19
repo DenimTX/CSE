@@ -133,7 +133,6 @@ range(len(characters))  # Makes a list of ALL INDICES
 for num in range(len(characters)):
     char = characters[num]
     print("The character at index %d is %s" % (num, char))
-
 str1 = "Hello World!"
 listOne = list(str1)
 print(listOne)
@@ -141,5 +140,27 @@ listOne[11] = '.'
 print(listOne)
 newStr = "".join(listOne)
 print(newStr)
+print(listOne[-2])  # Goes backwards
 
-# 
+# adding stuff to a list
+characters.append("Ironman/Batman/whomever you want")
+print(characters)
+characters.append("Pepe")
+
+# removing things from a list
+characters.remove("Carl")
+print(characters)
+
+characters.pop(6)
+print(characters)
+
+# the string class
+import string  # has to be at the top
+print(string.ascii_letters)
+print(string.ascii_lowercase)
+print(string.digits)
+print(string.punctuation)  # start hangman off with the player already having guessed all the punctuations and space
+
+strTwo = 'ThIs sEntENcE iS uNuSuAL'
+lowercase = strTwo.lower()
+print(lowercase)
