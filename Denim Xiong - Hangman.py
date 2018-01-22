@@ -7,9 +7,21 @@ Outline of Hangman
 4. Reveal letters if they have been guessed
 5. Create the win condition
 """
-words = ["Zilean", "Nautilus", "Mordekaiser", "Evelynn", "Aatrox", "Swain", "Vladimir", "Alistar", "Vayne", "Ezreal"]
-rw = random.randint(0, 9)
-print(words[rw])
+
+guesses = 10
+
+words = ["Kalista", "Jinx", "Varus", "Vayne", "Ezreal", "Caitlyn", "Sivir", "Xayah", "Lucian", "Miss Fortune"]
+reveal = (random.choice(words))
+print(reveal)
+letters = "abcdefghijklmnopqrstuvwxyz"
+while guesses > 0:
+    guess = input("Guess a letter")
+    if guess == reveal:
+        print("hi")
+    if guess != reveal:
+        guesses -= 1
+        print("You have %s guesses left" % guesses)
+
 
 # str1 = (words[rw])          replace fix
 # listOne = list(str1)
