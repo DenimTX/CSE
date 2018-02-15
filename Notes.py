@@ -164,3 +164,80 @@ print(string.punctuation)  # start hangman off with the player already having gu
 strTwo = 'ThIs sEntENcE iS uNuSuAL'
 lowercase = strTwo.lower()
 print(lowercase)
+
+# Dictionaries - Make up a key: value pair
+dictionary = {'name': 'Lance', 'age': 18, 'height': 6 * 12 + 2}
+
+# Accessing from a dictionary
+print(dictionary['name'])
+print(dictionary['age'])
+print(dictionary['height'])
+
+# Adding to a dictionary
+dictionary["eye color"] = "blue"
+dictionary["toilet paper"] = True
+print(dictionary)
+
+large_dictionary = {
+    "California": "CA",
+    "Washington": "WA",
+    "Illinois": "IL"
+}
+
+print(large_dictionary['Washington'])
+
+larger_dictionary = {
+    "California": [
+        'Fresno',
+        'Sacremento',
+        'Los Angeles'
+    ],
+    "Washington": [
+        "Seattle",
+        "Tacoma",
+        "Olympia",
+        "Spokane"
+    ],
+    "Illinois": [
+        "Chicago",
+        "Naperville",
+        "Peoria"
+    ]
+}
+
+print(larger_dictionary['Illinois'])
+print(larger_dictionary['Illinois'][0])
+print(larger_dictionary['Washington'][3])
+
+
+largest_dictionary = {
+    "CA": {
+        'NAME': "California",
+        'POPULATION': 39250000,
+        'BORDER ST': [
+            'Oregon',
+            'Nevada',
+            "Arizona"
+        ]
+    },
+    "MI": {
+        "NAME": "Michigan",
+        "POPULATION": 99280000,
+        "BORDER ST": [
+            'Wisconsin',
+            'Ohio',
+            'Indiana'
+        ]
+    },
+    "FL": {
+        "NAME": "Florida",
+        "POPULATION": 20610000,
+        "BORDER ST": [
+            'Georgia',
+            'Alabama'
+        ]
+    }
+}
+print(largest_dictionary["MI"]["BORDER ST"][1])
+print(largest_dictionary["FL"]["NAME"])
+
