@@ -130,12 +130,12 @@ while True:
             current_node = world_map[name_of_node]
         except KeyError:
             print("You cannot go that way.")
-    if command == 'quit':
-        exit(0)
-    if command == 'help':
-        print(' TYPE IN \'SOUTH\', \'NORTH\', \'WEST\', \'EAST\', \'NORTHEAST\', \'SOUTHWEST\', \'SOUTHEAST\', '
-              'OR \'NORTHWEST\' TO MOVE. \'')
-        print('TYPE \'quit\' TO QUIT.')
+    # if command == 'quit':
+    #     exit(0)
+    # if command == 'help':
+    #     print(' TYPE IN \'SOUTH\', \'NORTH\', \'WEST\', \'EAST\', \'NORTHEAST\', \'SOUTHWEST\', \'SOUTHEAST\', '
+    #           'OR \'NORTHWEST\' TO MOVE. \'')
+    #     print('TYPE \'quit\' TO QUIT.')
     else:
         print("Command not found.")
     print()
