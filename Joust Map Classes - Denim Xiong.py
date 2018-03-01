@@ -15,7 +15,6 @@ class Room(object):
         global current_node
         # current_node = spawn_n
         current_node = globals()[getattr(self, direction)]
-        print(current_node)
 
 
 spawn_n = Room("Spawn (North)", None, None, None, None, None, None, "phoenix_n", None, 'You see a phoenix and a spawn '
@@ -56,24 +55,20 @@ spawn_s = Room("Spawn (South)", None, None, None, None, None, "phoenix_s", None,
                'You see a spawn platform and a phoenix.')
 
 
-current_node = spawn_n
 directions = ['southeast', 'northwest', 'south', 'west', 'east', 'north', 'southwest', 'northeast']
+current_node = spawn_n
 
 while True:
     print(current_node.name)
     print(current_node.description)
     command = input('>_ ')
+    if command == 'quit':
+        exit(0)
     if command in directions:
         try:
             current_node.move(command)
         except KeyError:
             print("You cannot go that way.")
-    # if command == 'quit':
-    #     exit(0)
-    # if command == 'help':
-    #     print(' Type in \'south\', \'north\', \'west\', \'east\', \'northeast\', \'southwest\', \'southeast\', '
-    #           'or \'northwest\' to move. \'')
-    #     print('TYPE \'quit\' TO QUIT.')
     else:
         print("Command not found.")
     print()
