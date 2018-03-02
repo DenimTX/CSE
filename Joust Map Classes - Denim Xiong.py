@@ -55,15 +55,20 @@ spawn_s = Room("Spawn (South)", None, None, None, None, None, "phoenix_s", None,
                'You see a spawn platform and a phoenix.')
 
 
-directions = ['southeast', 'northwest', 'south', 'west', 'east', 'north', 'southwest', 'northeast']
 current_node = spawn_n
+directions = ['southeast', 'northwest', 'south', 'west', 'east', 'north', 'southwest', 'northeast']
+short_directions = ['se', 'nw', 's', 'w', 'e', 'n', 'sw', 'ne']
 
 while True:
     print(current_node.name)
     print(current_node.description)
-    command = input('>_ ')
+    command = input('>_ ').lower().strip()
     if command == 'quit':
         exit(0)
+    elif command in short_directions:
+        # Finds the command in short directions (index number)
+        pos = short_directions.index(command)
+        command = directions[pos]
     if command in directions:
         try:
             current_node.move(command)
