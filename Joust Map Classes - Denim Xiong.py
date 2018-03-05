@@ -13,7 +13,6 @@ class Room(object):
 
     def move(self, direction):
         global current_node
-        # current_node = spawn_n
         current_node = globals()[getattr(self, direction)]
 
 
@@ -69,6 +68,9 @@ while True:
         # Finds the command in short directions (index number)
         pos = short_directions.index(command)
         command = directions[pos]
+    if command == 'help':
+        print("Type 'southeast', 'northwest', 'south', 'west', 'east', 'north', 'southwest', 'northeast', 'se', 'nw', "
+              "'s', 'w', 'e', 'n', 'sw', 'ne' to move.")
     if command in directions:
         try:
             current_node.move(command)
@@ -76,6 +78,8 @@ while True:
             print("You cannot go that way.")
     else:
         print("Command not found.")
-    print("-------------------------------------------------------")
-
+    print("---------------------------------------------------------------------------------------------------------"
+          "-----------------------------------------")
+    print()
+    
 # Denim Xiong
