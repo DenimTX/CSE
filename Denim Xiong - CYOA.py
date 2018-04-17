@@ -40,11 +40,41 @@ class Consumable(Item):
 
 class Armor(Item):
     def __init__(self, health, money):
-        super(Armor, self).__init__('name', '1000')
+        super(Armor, self).__init__('name', money)
         self.health = health
         self.money = money
 
 
+class Longsword(Weapon):
+    def __init__(self):
+        super(Longsword, self).__init__('Longsword', 350, 25, 0, 'A generic longsword.\nDoes 25 damage')
+
+
+class Vampiricsword(Weapon):
+    def __init__(self):
+        super(Vampiricsword, self).__init__()
+
+
+class Giantsword(Weapon):
+    def __init__(self):
+        super(Giantsword, self).__init__()
+
+
+    longsword = Weapon('Longsword', 350, 25, 0, 'A generic longsword.\nDoes 25 damage')
+    vampiric_sword = Weapon('Vampiric Sword', 900, 15, 3, 'A mysterious sword that gives you 3 health when you attack '
+                                                          'an enemy.\nDoes 15 damage.')
+    giant_sword = Weapon('Giant Sword', 1300, 50, 0, 'The sword of a giant.\nDoes 50 damage.')
+    excalibur = Weapon('Excalibur', 3600, 75, 0, 'A sword fit for a hero.\nDoes 75 damage.')
+
+    giant_hp_pot = Consumable(200, "Giant Health Potion", 100)
+    hp_pot = Consumable(100, "Health Potion", 50)
+
+    viking_helmet = Armor(350, 450)
+    thornmail = Armor(1000, 1100)
+    giants_belt = Armor(500, 600)
+    tabi_boots = Armor(200, 300)
+    cloth_armor = Armor(300, 400)
+    breastplate = Armor(400, 500)
 class Character(object):
     def __init__(self, name, health, description, attack, money, inventory):
         self.name = name
@@ -94,6 +124,7 @@ class Character(object):
                     enemy.hit(self)
                 elif choice == enemy:
                     self.hit(enemy)
+            print()
         else:
             print("That enemy isn't here you fool.")
 

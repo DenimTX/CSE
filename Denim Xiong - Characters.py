@@ -31,7 +31,7 @@ class Character(object):
                 self.swing(enemy)
 
 
-you = Character('Zeus', [], 100, 'A useless old man.', random.randint(1, 10))
-enemy = Character('Baron Nashor', [], 100, 'A purple and sturdy worm.', random.randint(1, 20))
+you = Character('Zeus', [], 100, 'A useless old man.', 10)
+dog = Character('Baron Nashor', [], 100, 'A purple and sturdy worm.', 20)
 
-you.fight(enemy)
+you.fight(dog)
