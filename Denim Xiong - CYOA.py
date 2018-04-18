@@ -14,6 +14,15 @@ class Item(object):
         else:
             print("You don't have a %s" % self.name)
 
+    # BUY
+    def buy(self):
+        if you.money >= self.money:
+            print("You buy a %s." % self.name)
+            you.money -= self.money
+            your_inv.append(self)
+        elif you.money < self.money:
+            print("You don't have enough money.")
+
 
 class Weapon(Item):
     def __init__(self, name, money, damage, lifesteal, description):
@@ -21,6 +30,15 @@ class Weapon(Item):
         self.damage = damage
         self.lifesteal = lifesteal
         self.description = description
+
+    # BUY
+    def buy(self):
+        if you.money >= self.money:
+            print("You buy a %s." % self.name)
+            you.money -= self.money
+            your_inv.append(self)
+        elif you.money < self.money:
+            print("You don't have enough money.")
 
 
 class Consumable(Item):
@@ -31,59 +49,11 @@ class Consumable(Item):
         self.money = money
 
     def use(self):
-        if hp_pot or giant_hp_pot in your_inv:
+        if Hppot or Gianthppot in your_inv:
             print("You drink a %s" % self.name)
             self.heal += you.health
         else:
             print("You don't have any consumables.")
-
-
-class Armor(Item):
-    def __init__(self, health, money):
-        super(Armor, self).__init__('name', money)
-        self.health = health
-        self.money = money
-
-
-class Longsword(Weapon):
-    def __init__(self):
-        super(Longsword, self).__init__('Longsword', 350, 25, 0, 'A generic longsword.\nDoes 25 damage')
-
-
-class Vampiricsword(Weapon):
-    def __init__(self):
-        super(Vampiricsword, self).__init__()
-
-
-class Giantsword(Weapon):
-    def __init__(self):
-        super(Giantsword, self).__init__()
-
-
-    longsword = Weapon('Longsword', 350, 25, 0, 'A generic longsword.\nDoes 25 damage')
-    vampiric_sword = Weapon('Vampiric Sword', 900, 15, 3, 'A mysterious sword that gives you 3 health when you attack '
-                                                          'an enemy.\nDoes 15 damage.')
-    giant_sword = Weapon('Giant Sword', 1300, 50, 0, 'The sword of a giant.\nDoes 50 damage.')
-    excalibur = Weapon('Excalibur', 3600, 75, 0, 'A sword fit for a hero.\nDoes 75 damage.')
-
-    giant_hp_pot = Consumable(200, "Giant Health Potion", 100)
-    hp_pot = Consumable(100, "Health Potion", 50)
-
-    viking_helmet = Armor(350, 450)
-    thornmail = Armor(1000, 1100)
-    giants_belt = Armor(500, 600)
-    tabi_boots = Armor(200, 300)
-    cloth_armor = Armor(300, 400)
-    breastplate = Armor(400, 500)
-class Character(object):
-    def __init__(self, name, health, description, attack, money, inventory):
-        self.name = name
-        self.health = health
-        self.description = description
-        self.attack = attack
-        self.death = False
-        self.money = money
-        self.inventory = inventory
 
     # BUY
     def buy(self):
@@ -93,6 +63,94 @@ class Character(object):
             your_inv.append(self)
         elif you.money < self.money:
             print("You don't have enough money.")
+
+
+class Armor(Item):
+    def __init__(self, health, money):
+        super(Armor, self).__init__('name', money)
+        self.health = health
+        self.money = money
+
+    # BUY
+    def buy(self):
+        if you.money >= self.money:
+            print("You buy a %s." % self.name)
+            you.money -= self.money
+            your_inv.append(self)
+        elif you.money < self.money:
+            print("You don't have enough money.")
+
+
+class Longsword(Weapon):
+    def __init__(self):
+        super(Longsword, self).__init__('Longsword', 350, 25, 0, 'A generic longsword.\nDoes 25 damage')
+
+
+class Vampiricsword(Weapon):
+    def __init__(self):
+        super(Vampiricsword, self).__init__('Vampiric Sword', 900, 15, 3, 'A mysterious sword that gives you 3 health '
+                                                                          'when you attack an enemy.\nDoes 15 damage.')
+
+
+class Giantsword(Weapon):
+    def __init__(self):
+        super(Giantsword, self).__init__('Giant Sword', 1300, 50, 0, 'The sword of a giant.\nDoes 50 damage.')
+
+
+class Excalibur(Weapon):
+    def __init__(self):
+        super(Excalibur, self).__init__('Excalibur', 3600, 75, 0, 'A sword fit for a hero.\nDoes 75 damage.')
+
+
+class Gianthppot(Consumable):
+    def __init__(self):
+        super(Gianthppot, self).__init__(200, "Giant Health Potion", 100)
+
+
+class Hppot(Consumable):
+    def __init__(self):
+        super(Hppot, self).__init__(100, "Health Potion", 50)
+
+
+class Vikinghelmet(Armor):
+    def __init__(self):
+        super(Vikinghelmet, self).__init__(350, 450)
+
+
+class Thornmail(Armor):
+    def __init__(self):
+        super(Thornmail, self).__init__(1000, 1100)
+
+
+class Giantsbelt(Armor):
+    def __init__(self):
+        super(Giantsbelt, self).__init__(500, 600)
+
+
+class Tabiboots(Armor):
+    def __init__(self):
+        super(Tabiboots, self).__init__(200, 300)
+
+
+class Clotharmor(Armor):
+    def __init__(self):
+        super(Clotharmor, self).__init__(300, 400)
+
+
+class Breastplate(Armor):
+    def __init__(self):
+        super(Breastplate, self).__init__(400, 500)
+
+
+class Character(object):
+    def __init__(self, name, health, description, attack, money, inventory):
+        self.name = name
+        self.health = health
+        self.description = description
+        self.attack = attack
+        self.death = False
+        self.money = money
+        self.inventory = inventory
 
     def take_damage(self, amount):
         self.health -= amount
@@ -110,8 +168,6 @@ class Character(object):
             if choice == loot:
                 your_inv.append(target.inventory)
             self.money += target.money
-        if you.health <= 0:
-            print("You died.")
             exit(0)
 
     def fight(self, enemy):
@@ -155,21 +211,21 @@ class Room(object):
         current_node = globals()[getattr(self, direction)]
 
 
-longsword = Weapon('Longsword', 350, 25, 0, 'A generic longsword.\nDoes 25 damage')
-vampiric_sword = Weapon('Vampiric Sword', 900, 15, 3, 'A mysterious sword that gives you 3 health when you attack '
-                                                      'an enemy.\nDoes 15 damage.')
-giant_sword = Weapon('Giant Sword', 1300, 50, 0, 'The sword of a giant.\nDoes 50 damage.')
-excalibur = Weapon('Excalibur', 3600, 75, 0, 'A sword fit for a hero.\nDoes 75 damage.')
-
-giant_hp_pot = Consumable(200, "Giant Health Potion", 100)
-hp_pot = Consumable(100, "Health Potion", 50)
-
-viking_helmet = Armor(350, 450)
-thornmail = Armor(1000, 1100)
-giants_belt = Armor(500, 600)
-tabi_boots = Armor(200, 300)
-cloth_armor = Armor(300, 400)
-breastplate = Armor(400, 500)
+# longsword = Weapon('Longsword', 350, 25, 0, 'A generic longsword.\nDoes 25 damage')
+# vampiric_sword = Weapon('Vampiric Sword', 900, 15, 3, 'A mysterious sword that gives you 3 health when you attack '
+#                                                       'an enemy.\nDoes 15 damage.')
+# giant_sword = Weapon('Giant Sword', 1300, 50, 0, 'The sword of a giant.\nDoes 50 damage.')
+# excalibur = Weapon('Excalibur', 3600, 75, 0, 'A sword fit for a hero.\nDoes 75 damage.')
+#
+# giant_hp_pot = Consumable(200, "Giant Health Potion", 100)
+# hp_pot = Consumable(100, "Health Potion", 50)
+#
+# viking_helmet = Armor(350, 450)
+# thornmail = Armor(1000, 1100)
+# giants_belt = Armor(500, 600)
+# tabi_boots = Armor(200, 300)
+# cloth_armor = Armor(300, 400)
+# breastplate = Armor(400, 500)
 
 
 your_inv = []
@@ -235,16 +291,47 @@ while True:
     command = input('>_ ').lower().strip()
 
     if command == 'buy':
-        if current_node == spawn_n:
-            print("---SHOP---\nVIKING HELMET\nTHORNMAIL\nGIANTS BELT\nTABI BOOTS\nCLOTH ARMOR\nBREASTPLATE\n"
-                  "HP POT\nGIANT HP POT\nEXCALIBUR\nGIANT SWORD\nVAMPIRIC SWORD\nLONGSWORD\n----------")
-            item_buy = input("What do you want to buy?\n>_")
+        shop = [Vikinghelmet, Thornmail, Giantsbelt, Tabiboots, Clotharmor, Breastplate, Hppot, Gianthppot, Excalibur,
+                Giantsword, Vampiricsword, Longsword]
 
-        else:
-            print("You are not in spawn.")
+        # def buy(self):
+        #     if you.money >= self.money:
+        #         print("You buy a %s." % self.name)
+        #         you.money -= self.money
+        #         your_inv.append(self)
+        #     elif you.money < self.money:
+        #         print("You don't have enough money.")
+
+        if current_node == spawn_n:
+            print("---SHOP---"
+                  "\nVIKING HELMET(0)----450 G"
+                  "\nTHORNMAIL(1)--------1100 G"
+                  "\nGIANTS BELT(2)------600 G"
+                  "\nTABI BOOTS(3)-------300 G"
+                  "\nCLOTH ARMOR(4)------400 G"
+                  "\nBREASTPLATE(5)------500 G"
+                  "\nHP POT(6)-----------50 G"
+                  "\nGIANT HP POT(7)-----100 G"
+                  "\nEXCALIBUR(8)--------3600 G"
+                  "\nGIANT SWORD(9)------1300 G"
+                  "\nVAMPIRIC SWORD(10)--900 G"
+                  "\nLONGSWORD(11)-------350 G"
+                  "\n----------")
+            item_buying = input("What do you want to buy? (Type in the number)\n>_")
+            you.money = 100000000
+            try:
+                item_buy = shop[int(item_buying)]
+                if you.money >= item_buy.money:
+                    print("You buy a %s." % item_buy.name)
+                    your_inv.append(item_buy)
+            except ValueError:
+                print("That is not an item.")
 
     if command == 'quit':
         exit(0)
+
+    if command == 'hp':
+        print(you.health)
 
     if command in short_directions:
         # Finds the command in short directions (index number)
