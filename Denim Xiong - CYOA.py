@@ -284,7 +284,8 @@ while True:
     print(current_node.description)
 
     if current_node == spawn_s:
-        you.health = max_hp
+        while you.health < 0:
+            you.health = max_hp
 
     # Add item stats to your own
     #
