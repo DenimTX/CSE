@@ -172,7 +172,7 @@ class Character(object):
         if enemy == current_node.enemy_in:
             print(you.name + ",", you.description, "starts fighting with %s" % enemy.name + ",", enemy.description)
             enemy.health = enemy.orig_hp
-            while enemy.health != 0:
+            while enemy.health > 0:
                 choice = random.choice([enemy, self])
                 if choice == self:
                     enemy.hit(self)
@@ -180,7 +180,7 @@ class Character(object):
                     self.hit(enemy)
             print()
         else:
-            print("That enemy isn't here you fool.")
+            print("There's no enemy here you fool.")
 
 
 class Enemy(Character):
@@ -228,12 +228,15 @@ breastplate = Breastplate('Breastplate', 400, 500)
 
 your_inv = []
 max_hp = 100
+max_inv = [1, 2, 3, 4, 5, 6]
 you = Character("Zeus", 100, "an old man", 10, 0, your_inv)
 demon = Enemy("Bull Demon King", 2000, "a giant, tough bull.", 100, 1000000, ["Excalibur", "Key"], 2000)
 turtle = Enemy("Turtle", 200, "a sturdy blue turtle.", 20, 200, ["Longsword"], 200)
 turtle1 = Enemy("Turtle", 200, "a sturdy blue turtle.", 20, 200, ["Longsword"], 200)
 tiger = Enemy("Tiger", 400, "a ferocious white tiger.", 40, 400, ["Vampiric Sword"], 400)
 minion = Enemy("Minion", 50, "a weak minion.", 5, 50, ['Health Potion'], 50)
+Memes = Enemy('All the memes', 10000000000000, 'All the memes', 1000000000000000, 100000000000000000000000000, [],
+              10000000000000)
 
 
 spawn_n = Room("Spawn (North)", None, None, None, None, None, None, "phoenix_n", None, 'You see a phoenix and a spawn '
@@ -273,6 +276,7 @@ phoenix_s = Room("Phoenix (South)", None, None, None, None, "spawn_s", "phoenix_
 spawn_s = Room("Spawn (South)", 'end_gate', None, None, None, None, "phoenix_s", None, None,
                'You see a spawn platform and a phoenix.', None)
 end_gate = Room("End Gate", None, None, None, "spawn_s", None, None, None, None, None, None)
+the_end = Room("THE END", None, None, None, 'end_gate', None, None, None, None, 'Thanks for playing!', Memes)
 
 current_node = spawn_n
 directions = ['southeast', 'northwest', 'south', 'west', 'east', 'north', 'southwest', 'northeast']
@@ -283,9 +287,15 @@ while True:
     print(current_node.name)
     print(current_node.description)
 
-    if current_node == spawn_s:
-        while you.health < 0:
+    if 'Key' in your_inv:
+        end_gate.south = the_end
+
+    if current_node == spawn_n:
+        if you.health < max_hp:
             you.health = max_hp
+
+    if your_inv > max_inv:
+        print("Your inventory is full.")
 
     # Add item stats to your own
     #
