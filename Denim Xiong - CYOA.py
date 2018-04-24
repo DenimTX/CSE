@@ -46,7 +46,7 @@ class Consumable(Item):
         super(Consumable, self).__init__(name, money)
         self.heal = heal
 
-    def use(self):
+    def heal(self):
         if Hppot or Gianthppot in your_inv:
             print("You drink a %s" % self.name)
             self.heal += you.health
@@ -163,10 +163,10 @@ class Character(object):
             print('You received %s gold.' % target.money)
             self.money += target.money
             # Loot
-            choice = random.randint(1, 20)
-            loot = random.randint(1, 20)
-            if choice == loot:
-                your_inv.append(target.inventory)
+            # choice = random.randint(1, 20)
+            # loot = random.randint(1, 20)
+            # if choice == loot:
+            your_inv.append(target.inventory)
 
     def fight(self, enemy):
         if enemy == current_node.enemy_in:
@@ -229,12 +229,13 @@ breastplate = Breastplate('Breastplate', 400, 500)
 your_inv = []
 max_hp = 100
 max_inv = [1, 2, 3, 4, 5, 6]
+Key = Item('Key', 0)
 you = Character("Zeus", 100, "an old man", 10, 0, your_inv)
-demon = Enemy("Bull Demon King", 2000, "a giant, tough bull.", 100, 1000000, ["Excalibur", "Key"], 2000)
-turtle = Enemy("Turtle", 200, "a sturdy blue turtle.", 20, 200, ["Longsword"], 200)
-turtle1 = Enemy("Turtle", 200, "a sturdy blue turtle.", 20, 200, ["Longsword"], 200)
-tiger = Enemy("Tiger", 400, "a ferocious white tiger.", 40, 400, ["Vampiric Sword"], 400)
-minion = Enemy("Minion", 50, "a weak minion.", 5, 50, ['Health Potion'], 50)
+demon = Enemy("Bull Demon King", 2000, "a giant, tough bull.", 100, 1000000, Excalibur or Key, 2000)
+turtle = Enemy("Turtle", 200, "a sturdy blue turtle.", 20, 200, Longsword, 200)
+turtle1 = Enemy("Turtle", 200, "a sturdy blue turtle.", 20, 200, Longsword, 200)
+tiger = Enemy("Tiger", 400, "a ferocious white tiger.", 40, 400, vampiric_sword, 400)
+minion = Enemy("Minion", 50, "a weak minion.", 5, 50, hp_pot, 50)
 Memes = Enemy('All the memes', 10000000000000, 'All the memes', 1000000000000000, 100000000000000000000000000, [],
               10000000000000)
 
@@ -281,7 +282,8 @@ the_end = Room("THE END", None, None, None, 'end_gate', None, None, None, None, 
 current_node = spawn_n
 directions = ['southeast', 'northwest', 'south', 'west', 'east', 'north', 'southwest', 'northeast']
 short_directions = ['se', 'nw', 's', 'w', 'e', 'n', 'sw', 'ne']
-
+all_the_commands = ['buy', 'southeast', 'northwest', 'south', 'west', 'east', 'north', 'southwest', 'northeast',
+                    'se', 'nw', 's', 'w', 'e', 'n', 'sw', 'ne', 'hp', 'money', 'help', 'inv', 'fight']
 
 while True:
     print(current_node.name)
@@ -294,7 +296,7 @@ while True:
         if you.health < max_hp:
             you.health = max_hp
 
-    if your_inv > max_inv:
+    if len(your_inv) > len(max_inv):
         print("Your inventory is full.")
 
     # Add item stats to your own
@@ -354,8 +356,10 @@ while True:
               "'s', 'w', 'e', 'n', 'sw', 'ne' to move.")
 
     if command == 'inv':
-        for inv in your_inv:
-            print('[ ' + inv.name + ' ]')
+        for i in your_inv:
+            print('[ ' + i.name + ' ]')
+        # if len(your_inv) == 0:
+        #     print([])
 
     if command == 'fight':
         you.fight(current_node.enemy_in)
@@ -365,8 +369,8 @@ while True:
             current_node.move(command)
         except KeyError:
             print("You cannot go that way.")
-    # else:
-    #     print("Command not found.")
+    elif command not in all_the_commands:
+        print("Command not found.")
 
     print("---------------------------------------------------------------------------------------------------------"
           "-----------------------------------------")
