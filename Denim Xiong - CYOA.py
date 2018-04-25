@@ -163,23 +163,24 @@ class Character(object):
             print('You received %s gold.' % target.money)
             self.money += target.money
             # Loot
-            # choice = random.randint(1, 20)
-            # loot = random.randint(1, 20)
-            # if choice == loot:
-            your_inv.append(target.inventory)
+            choice = random.randint(1, 20)
+            loot = random.randint(1, 20)
+            if choice == loot:
+                your_inv.append(target.inventory)
 
     def fight(self, enemy):
-        if enemy == current_node.enemy_in:
-            print(you.name + ",", you.description, "starts fighting with %s" % enemy.name + ",", enemy.description)
-            enemy.health = enemy.orig_hp
-            while enemy.health > 0:
-                choice = random.choice([enemy, self])
-                if choice == self:
-                    enemy.hit(self)
-                elif choice == enemy:
-                    self.hit(enemy)
-            print()
-        else:
+        try:
+            if enemy == current_node.enemy_in:
+                print(you.name + ",", you.description, "starts fighting with %s" % enemy.name + ",", enemy.description)
+                enemy.health = enemy.orig_hp
+                while enemy.health > 0:
+                    choice = random.choice([enemy, self])
+                    if choice == self:
+                        enemy.hit(self)
+                    elif choice == enemy:
+                        self.hit(enemy)
+                print()
+        except AttributeError:
             print("There's no enemy here you fool.")
 
 
@@ -209,6 +210,7 @@ class Room(object):
         current_node = globals()[getattr(self, direction)]
 
 
+useless_item = Item('Useless Item', 0)
 longsword = Longsword('Longsword', 350, 30, 0, 'A long sword.')
 vampiric_sword = Vampiricsword('Vampiric Sword', 900, 15, 3, 'A mysterious sword that gives you 3 health when '
                                                              'you attack an enemy.\nDoes 15 damage.')
@@ -230,14 +232,15 @@ your_inv = []
 max_hp = 100
 max_inv = [1, 2, 3, 4, 5, 6]
 Key = Item('Key', 0)
-you = Character("Zeus", 100, "an old man", 10, 0, your_inv)
-demon = Enemy("Bull Demon King", 2000, "a giant, tough bull.", 100, 1000000, Excalibur or Key, 2000)
+you = Character("Zeus", 1009999999999, "an old man", 109999999999, 0, your_inv)
+demon = Enemy("Bull Demon King", 2000, "a giant, tough bull.", 100, 1000000, excalibur, 2000)
 turtle = Enemy("Turtle", 200, "a sturdy blue turtle.", 20, 200, Longsword, 200)
 turtle1 = Enemy("Turtle", 200, "a sturdy blue turtle.", 20, 200, Longsword, 200)
 tiger = Enemy("Tiger", 400, "a ferocious white tiger.", 40, 400, vampiric_sword, 400)
 minion = Enemy("Minion", 50, "a weak minion.", 5, 50, hp_pot, 50)
 Memes = Enemy('All the memes', 10000000000000, 'All the memes', 1000000000000000, 100000000000000000000000000, [],
               10000000000000)
+the_villain = Enemy('Evil Man', 2500, 'a wicked, foul man', 150, 100, None, 2500)
 
 
 spawn_n = Room("Spawn (North)", None, None, None, None, None, None, "phoenix_n", None, 'You see a phoenix and a spawn '
@@ -276,7 +279,8 @@ phoenix_s = Room("Phoenix (South)", None, None, None, None, "spawn_s", "phoenix_
                  'You see a path, a spawn platform, and a phoenix.', None)
 spawn_s = Room("Spawn (South)", 'end_gate', None, None, None, None, "phoenix_s", None, None,
                'You see a spawn platform and a phoenix.', None)
-end_gate = Room("End Gate", None, None, None, "spawn_s", None, None, None, None, None, None)
+end_gate = Room("End Gate", None, None, None, "spawn_s", None, None, None, None, 'You see a path north and'
+                                                                                 'a dark shadow.', the_villain)
 the_end = Room("THE END", None, None, None, 'end_gate', None, None, None, None, 'Thanks for playing!', Memes)
 
 current_node = spawn_n
@@ -289,7 +293,7 @@ while True:
     print(current_node.name)
     print(current_node.description)
 
-    if 'Key' in your_inv:
+    if Key in your_inv:
         end_gate.south = the_end
 
     if current_node == spawn_n:
@@ -305,6 +309,11 @@ while True:
     #
 
     command = input('>_ ').lower().strip()
+
+    # if command == 'drop':
+    #     dropping = input('What do you want to drop?')
+    #     if dropping in your_inv:
+    #
 
     if command == 'buy':
         shop = [viking_helmet, thornmail, giants_belt, tabi_boots, cloth_armor, breastplate, hp_pot, giant_hp_pot,
@@ -330,7 +339,7 @@ while True:
             try:
                 item_buy = shop[int(item_buying)]
                 if you.money < item_buy.money:
-                    print("You poor go grind some more.")
+                    print("You're poor go grind some more.")
                 if you.money >= item_buy.money:
                     print("You buy a %s." % item_buy.name)
                     your_inv.append(item_buy)
@@ -356,12 +365,17 @@ while True:
               "'s', 'w', 'e', 'n', 'sw', 'ne' to move.")
 
     if command == 'inv':
+        print(your_inv)
         for i in your_inv:
             print('[ ' + i.name + ' ]')
-        # if len(your_inv) == 0:
-        #     print([])
+        if len(your_inv) == 0:
+            print([])
 
     if command == 'fight':
+            if current_node.enemy_in == the_villain and excalibur in your_inv:
+                you.fight(current_node.enemy_in)
+            else:
+                print('You are not the chose one.')
         you.fight(current_node.enemy_in)
 
     if command in directions:
@@ -375,16 +389,5 @@ while True:
     print("---------------------------------------------------------------------------------------------------------"
           "-----------------------------------------")
     print()
-
-
-# Test inventory
-# print(you.fight(minion))
-# print(your_inv)
-# print(longsword.buy())
-# print(your_inv)
-
-# Print Inventory
-# for inv in your_inv:
-#     print('[ ' + inv.name + ' ]')
 
 # Denim Xiong
