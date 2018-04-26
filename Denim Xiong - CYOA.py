@@ -6,22 +6,14 @@ class Item(object):
         self.name = name
         self.money = money
 
-    def sell(self):
-        if self.name in your_inv:
-            print("You sell the %s for %s gold" % (self.name, self.money))
-            you.money += self.money
-            your_inv.remove(self.name)
-        else:
-            print("You don't have a %s" % self.name)
-
     # BUY
-    def buy(self):
-        if you.money >= self.money:
-            print("You buy a %s." % self.name)
-            you.money -= self.money
-            your_inv.append(self)
-        elif you.money < self.money:
-            print("You don't have enough money.")
+    # def buy(self):
+    #     if you.money >= self.money:
+    #         print("You buy a %s." % self.name)
+    #         you.money -= self.money
+    #         your_inv.append(self)
+    #     elif you.money < self.money:
+    #         print("You don't have enough money.")
 
 
 class Weapon(Item):
@@ -31,14 +23,25 @@ class Weapon(Item):
         self.lifesteal = lifesteal
         self.description = description
 
+        # def sell():
+        #     if current_node == spawn_n:
+        #         if self in your_inv:
+        #             print("You sell the %s for %s gold" % (self.name, self.money))
+        #             you.money += self.money
+        #             your_inv.remove(self.name)
+        #             if self in weapon_shop:
+        #                 you.attack -= self.damage
+        #                 you.lifesteal -= self.lifesteal
+        #     else:
+        #         print("You don't have a %s" % self.name)
     # BUY
-    def buy(self):
-        if you.money >= self.money:
-            print("You buy a %s." % self.name)
-            you.money -= self.money
-            your_inv.append(self)
-        elif you.money < self.money:
-            print("You don't have enough money.")
+    # def buy(self):
+    #     if you.money >= self.money:
+    #         print("You buy a %s." % self.name)
+    #         you.money -= self.money
+    #         your_inv.append(self)
+    #     elif you.money < self.money:
+    #         print("You don't have enough money.")
 
 
 class Consumable(Item):
@@ -54,13 +57,13 @@ class Consumable(Item):
             print("You don't have any consumables.")
 
     # BUY
-    def buy(self):
-        if you.money >= self.money:
-            print("You buy a %s." % self.name)
-            you.money -= self.money
-            your_inv.append(self)
-        elif you.money < self.money:
-            print("You don't have enough money.")
+    # def buy(self):
+    #     if you.money >= self.money:
+    #         print("You buy a %s." % self.name)
+    #         you.money -= self.money
+    #         your_inv.append(self)
+    #     elif you.money < self.money:
+    #         print("You don't have enough money.")
 
 
 class Armor(Item):
@@ -69,13 +72,13 @@ class Armor(Item):
         self.health = health
 
     # BUY
-    def buy(self):
-        if you.money >= self.money:
-            print("You buy a %s." % self.name)
-            you.money -= self.money
-            your_inv.append(self)
-        elif you.money < self.money:
-            print("You don't have enough money.")
+    # def buy(self):
+    # if you.money >= self.money:
+    #     print("You buy a %s." % self.name)
+    #     you.money -= self.money
+    #     your_inv.append(self)
+    # elif you.money < self.money:
+    #     print("You don't have enough money.")
 
 
 class Longsword(Weapon):
@@ -139,12 +142,13 @@ class Breastplate(Armor):
 
 
 class Character(object):
-    def __init__(self, name, health, description, attack, money, inventory):
+    def __init__(self, name, health, description, attack, lifesteal, money, inventory):
         self.name = name
         self.health = health
         self.description = description
         self.attack = attack
         self.death = False
+        self.lifesteal = lifesteal
         self.money = money
         self.inventory = inventory
 
@@ -177,16 +181,20 @@ class Character(object):
                     choice = random.choice([enemy, self])
                     if choice == self:
                         enemy.hit(self)
+                        you.health += you.lifesteal
+                        if you.health > max_hp:
+                            you.health = max_hp
                     elif choice == enemy:
                         self.hit(enemy)
+                        enemy.health += enemy.lifesteal
                 print()
         except AttributeError:
             print("There's no enemy here you fool.")
 
 
 class Enemy(Character):
-    def __init__(self, name, health, description, attack, money, inventory, orig_hp):
-        super(Enemy, self).__init__(name, health, description, attack, money, inventory)
+    def __init__(self, name, health, description, attack, lifesteal, money, inventory, orig_hp):
+        super(Enemy, self).__init__(name, health, description, attack, lifesteal, money, inventory)
         self.orig_hp = orig_hp
 
 
@@ -226,21 +234,23 @@ giants_belt = Giantsbelt('Giants Belt', 500, 600)
 tabi_boots = Tabiboots('Tabi Boots', 200, 300)
 cloth_armor = Clotharmor('Cloth Armor', 300, 400)
 breastplate = Breastplate('Breastplate', 400, 500)
+money_bag = Item('Money bag', 100)
+giant_money_bag = Item('Giant money bag', 250)
 
 
 your_inv = []
 max_hp = 100
 max_inv = [1, 2, 3, 4, 5, 6]
 Key = Item('Key', 0)
-you = Character("Zeus", 1009999999999, "an old man", 109999999999, 0, your_inv)
-demon = Enemy("Bull Demon King", 2000, "a giant, tough bull.", 100, 1000000, excalibur, 2000)
-turtle = Enemy("Turtle", 200, "a sturdy blue turtle.", 20, 200, Longsword, 200)
-turtle1 = Enemy("Turtle", 200, "a sturdy blue turtle.", 20, 200, Longsword, 200)
-tiger = Enemy("Tiger", 400, "a ferocious white tiger.", 40, 400, vampiric_sword, 400)
-minion = Enemy("Minion", 50, "a weak minion.", 5, 50, hp_pot, 50)
-Memes = Enemy('All the memes', 10000000000000, 'All the memes', 1000000000000000, 100000000000000000000000000, [],
+you = Character("", 100, "", 10, 0, 0, your_inv)
+demon = Enemy("Bull Demon King", 2000, "a giant, tough bull.", 100, 0, 1000000, giant_money_bag, 2000)
+turtle = Enemy("Turtle", 200, "a sturdy blue turtle.", 20, 200, 0, money_bag, 200)
+turtle1 = Enemy("Turtle", 200, "a sturdy blue turtle.", 20, 200, 0, money_bag, 200)
+tiger = Enemy("Tiger", 400, "a ferocious white tiger.", 40, 400, 0, money_bag, 400)
+minion = Enemy("Minion", 50, "a weak minion.", 5, 0, 50, hp_pot, 50)
+Memes = Enemy('All the memes', 10000000000000, 'All the memes', 1000000000000000, 0, 100000000000000000000000000, [],
               10000000000000)
-the_villain = Enemy('Evil Man', 2500, 'a wicked, foul man', 150, 100, None, 2500)
+the_villain = Enemy('Evil Man', 2500, 'a wicked, foul man', 150, 0, 100, useless_item, 2500)
 
 
 spawn_n = Room("Spawn (North)", None, None, None, None, None, None, "phoenix_n", None, 'You see a phoenix and a spawn '
@@ -287,7 +297,12 @@ current_node = spawn_n
 directions = ['southeast', 'northwest', 'south', 'west', 'east', 'north', 'southwest', 'northeast']
 short_directions = ['se', 'nw', 's', 'w', 'e', 'n', 'sw', 'ne']
 all_the_commands = ['buy', 'southeast', 'northwest', 'south', 'west', 'east', 'north', 'southwest', 'northeast',
-                    'se', 'nw', 's', 'w', 'e', 'n', 'sw', 'ne', 'hp', 'money', 'help', 'inv', 'fight']
+                    'se', 'nw', 's', 'w', 'e', 'n', 'sw', 'ne', 'hp', 'money', 'help', 'inv', 'fight', 'stats', 'me']
+
+character_name = input('What do you want to be named?\n>_')
+you.name = character_name
+character_description = input('How would you describe yourself?\na:')
+you.description = ('a' + ' ' + character_description)
 
 while True:
     print(current_node.name)
@@ -303,19 +318,33 @@ while True:
     if len(your_inv) > len(max_inv):
         print("Your inventory is full.")
 
-    # Add item stats to your own
-    #
-    #
-    #
-
     command = input('>_ ').lower().strip()
 
-    # if command == 'drop':
-    #     dropping = input('What do you want to drop?')
-    #     if dropping in your_inv:
-    #
+    if command == 'sell':
+        your_inv = [longsword]
+        if current_node == spawn_n:
+            for i in your_inv:
+                print('[ ' + i.name + ' ]')
+            if len(your_inv) == 0:
+                print([])
+            selling = input('What do you want to sell?')
+
+    if command == 'me':
+        print('-------------------------------')
+        print(you.name)
+        print(you.description)
+        print('-------------------------------')
+
+    if command == 'stats':
+        print('-------------------------------')
+        print('MAX HP' + ' - ' + str(max_hp))
+        print('ATT' + ' - ' + str(you.attack))
+        print('LS' + ' - ' + str(you.lifesteal))
+        print('-------------------------------')
 
     if command == 'buy':
+        armor_shop = [viking_helmet, thornmail, giants_belt, tabi_boots, cloth_armor, breastplate]
+        weapon_shop = [excalibur, giant_sword, vampiric_sword, longsword]
         shop = [viking_helmet, thornmail, giants_belt, tabi_boots, cloth_armor, breastplate, hp_pot, giant_hp_pot,
                 excalibur,
                 giant_sword, vampiric_sword, longsword]
@@ -343,6 +372,11 @@ while True:
                 if you.money >= item_buy.money:
                     print("You buy a %s." % item_buy.name)
                     your_inv.append(item_buy)
+                    if item_buy in armor_shop:
+                        max_hp += item_buy.health
+                    if item_buy in weapon_shop:
+                        you.attack += item_buy.damage
+                        you.lifesteal += item_buy.lifesteal
             except ValueError:
                 print("That is not an item.")
 
@@ -365,18 +399,18 @@ while True:
               "'s', 'w', 'e', 'n', 'sw', 'ne' to move.")
 
     if command == 'inv':
-        print(your_inv)
         for i in your_inv:
             print('[ ' + i.name + ' ]')
         if len(your_inv) == 0:
             print([])
 
     if command == 'fight':
-            if current_node.enemy_in == the_villain and excalibur in your_inv:
-                you.fight(current_node.enemy_in)
-            else:
-                print('You are not the chose one.')
-        you.fight(current_node.enemy_in)
+        if current_node.enemy_in == the_villain and excalibur in your_inv:
+            you.fight(current_node.enemy_in)
+        else:
+            print('You are not the chose one.')
+        if current_node.enemy_in == current_node.enemy_in:
+            you.fight(current_node.enemy_in)
 
     if command in directions:
         try:
