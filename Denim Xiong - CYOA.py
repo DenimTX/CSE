@@ -320,20 +320,8 @@ while True:
 
     command = input('>_ ').lower().strip()
 
-    if command == 'sell':
-        your_inv = [longsword]
-        if current_node == spawn_n:
-            for i in your_inv:
-                print('[ ' + i.name + ' ]')
-            if len(your_inv) == 0:
-                print([])
-            selling = input('What do you want to sell?')
-
-    if command == 'me':
-        print('-------------------------------')
-        print(you.name)
-        print(you.description)
-        print('-------------------------------')
+    if command == 'hp':
+        print(str(you.health)+'/'+str(max_hp))
 
     if command == 'stats':
         print('-------------------------------')
@@ -342,12 +330,17 @@ while True:
         print('LS' + ' - ' + str(you.lifesteal))
         print('-------------------------------')
 
+    if command == 'me':
+        print('-------------------------------')
+        print(you.name)
+        print(you.description)
+        print('-------------------------------')
+
     if command == 'buy':
         armor_shop = [viking_helmet, thornmail, giants_belt, tabi_boots, cloth_armor, breastplate]
         weapon_shop = [excalibur, giant_sword, vampiric_sword, longsword]
         shop = [viking_helmet, thornmail, giants_belt, tabi_boots, cloth_armor, breastplate, hp_pot, giant_hp_pot,
-                excalibur,
-                giant_sword, vampiric_sword, longsword]
+                excalibur, giant_sword, vampiric_sword, longsword]
 
         if current_node == spawn_n:
             print("---SHOP---"
@@ -379,12 +372,53 @@ while True:
                         you.lifesteal += item_buy.lifesteal
             except ValueError:
                 print("That is not an item.")
+        elif current_node != spawn_n:
+            print('You are not in spawn.')
+
+    if command == 'sell':
+        armor_shop = [viking_helmet, thornmail, giants_belt, tabi_boots, cloth_armor, breastplate]
+        weapon_shop = [excalibur, giant_sword, vampiric_sword, longsword]
+        shop = [viking_helmet, thornmail, giants_belt, tabi_boots, cloth_armor, breastplate, hp_pot, giant_hp_pot,
+                excalibur, giant_sword, vampiric_sword, longsword]
+        your_inv = [longsword]
+        if current_node == spawn_n:
+            for i in your_inv:
+                print('YOUR INV:')
+                print('[ ' + i.name + ' ]')
+            if len(your_inv) == 0:
+                print([])
+            print("\nVIKING HELMET(0)"
+                  "\nTHORNMAIL(1)"
+                  "\nGIANTS BELT(2)"
+                  "\nTABI BOOTS(3)"
+                  "\nCLOTH ARMOR(4)"
+                  "\nBREASTPLATE(5)"
+                  "\nHP POT(6)"
+                  "\nGIANT HP POT(7)"
+                  "\nEXCALIBUR(8)"
+                  "\nGIANT SWORD(9)"
+                  "\nVAMPIRIC SWORD(10)"
+                  "\nLONGSWORD(11)"
+                  "\n----------")
+            selling = input('What do you want to sell?')
+            try:
+                sold = shop[int(selling)]
+                if sold not in your_inv:
+                    print('You don\'t have this in your inventory.')
+                if sold in your_inv:
+                    print('You sell a %s.' % sold.name)
+                    you.money += sold.money
+                    your_inv.remove(sold)
+                    if sold in armor_shop:
+                        max_hp -= sold.health
+                    if sold in weapon_shop:
+                        you.attack -= sold.damage
+                        you.lifesteal -= sold.lifesteal
+            except ValueError:
+                print('That is not an option.')
 
     if command == 'quit':
         exit(0)
-
-    if command == 'hp':
-        print(str(you.health)+'/'+str(max_hp))
 
     if command in short_directions:
         # Finds the command in short directions (index number)
