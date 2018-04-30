@@ -165,6 +165,7 @@ class Character(object):
             target.death = True
             print('%s died.' % target.name)
             print('You received %s gold.' % target.money)
+            print('HP: %s' % you.health)
             self.money += target.money
             # Loot
             choice = random.randint(1, 20)
@@ -177,7 +178,7 @@ class Character(object):
             if enemy == current_node.enemy_in:
                 print(you.name + ",", you.description, "starts fighting with %s" % enemy.name + ",", enemy.description)
                 enemy.health = enemy.orig_hp
-                while enemy.health > 0:
+                while enemy.health != 0:
                     choice = random.choice([enemy, self])
                     if choice == self:
                         enemy.hit(self)
@@ -241,12 +242,12 @@ giant_money_bag = Item('Giant money bag', 250)
 your_inv = []
 max_hp = 100
 max_inv = [1, 2, 3, 4, 5, 6]
-Key = Item('Key', 0)
+key = Item('Key', 0)
 you = Character("", 100, "", 10, 0, 0, your_inv)
 demon = Enemy("Bull Demon King", 2000, "a giant, tough bull.", 100, 0, 1000000, giant_money_bag, 2000)
-turtle = Enemy("Turtle", 200, "a sturdy blue turtle.", 20, 200, 0, money_bag, 200)
-turtle1 = Enemy("Turtle", 200, "a sturdy blue turtle.", 20, 200, 0, money_bag, 200)
-tiger = Enemy("Tiger", 400, "a ferocious white tiger.", 40, 400, 0, money_bag, 400)
+turtle = Enemy("Turtle", 200, "a sturdy blue turtle.", 20, 0, 0, money_bag, 200)
+turtle1 = Enemy("Turtle", 200, "a sturdy blue turtle.", 20, 0, 0, money_bag, 200)
+tiger = Enemy("Tiger", 400, "a ferocious white tiger.", 40, 0, 0, money_bag, 400)
 minion = Enemy("Minion", 50, "a weak minion.", 5, 0, 50, hp_pot, 50)
 Memes = Enemy('All the memes', 10000000000000, 'All the memes', 1000000000000000, 0, 100000000000000000000000000, [],
               10000000000000)
@@ -289,15 +290,16 @@ phoenix_s = Room("Phoenix (South)", None, None, None, None, "spawn_s", "phoenix_
                  'You see a path, a spawn platform, and a phoenix.', None)
 spawn_s = Room("Spawn (South)", 'end_gate', None, None, None, None, "phoenix_s", None, None,
                'You see a spawn platform and a phoenix.', None)
-end_gate = Room("End Gate", None, None, None, "spawn_s", None, None, None, None, 'You see a path north and'
-                                                                                 'a dark shadow.', the_villain)
+end_gate = Room("End Gate", None, None, None, "spawn_s", None, None, None, None, 'You see a path north and '
+                                                                                 'a dark shadow.', None)
 the_end = Room("THE END", None, None, None, 'end_gate', None, None, None, None, 'Thanks for playing!', Memes)
 
 current_node = spawn_n
 directions = ['southeast', 'northwest', 'south', 'west', 'east', 'north', 'southwest', 'northeast']
 short_directions = ['se', 'nw', 's', 'w', 'e', 'n', 'sw', 'ne']
 all_the_commands = ['buy', 'southeast', 'northwest', 'south', 'west', 'east', 'north', 'southwest', 'northeast',
-                    'se', 'nw', 's', 'w', 'e', 'n', 'sw', 'ne', 'hp', 'money', 'help', 'inv', 'fight', 'stats', 'me']
+                    'se', 'nw', 's', 'w', 'e', 'n', 'sw', 'ne', 'hp', 'money', 'help', 'inv', 'fight', 'stats', 'me',
+                    'sell', 'buy', 'bigheal', 'heal', 'fight evil']
 
 character_name = input('What do you want to be named?\n>_')
 you.name = character_name
@@ -308,17 +310,47 @@ while True:
     print(current_node.name)
     print(current_node.description)
 
-    if Key in your_inv:
-        end_gate.south = the_end
-
     if current_node == spawn_n:
         if you.health < max_hp:
             you.health = max_hp
 
-    if len(your_inv) > len(max_inv):
+    if len(your_inv) >= len(max_inv):
         print("Your inventory is full.")
 
+    if current_node == end_gate:
+        if excalibur in your_inv:
+            end_gate.enemy_in = the_villain
+            end_gate.south = 'the_end'
+
     command = input('>_ ').lower().strip()
+
+    if command == 'bigheal':
+        if giant_hp_pot in your_inv:
+            if you.health == max_hp:
+                print("You are already full hp.")
+            if you.health < max_hp:
+                print("You drink a giant health potion.")
+                you.health += giant_hp_pot.heal
+                if you.health > max_hp:
+                    you.health = max_hp
+            print('HP: %s' % you.health)
+        if giant_hp_pot not in your_inv:
+            print("You don\'t have a giant health potion.")
+
+    if command == 'heal':
+        if hp_pot in your_inv:
+            if you.health == max_hp:
+                print("You are already full hp.")
+            if you.health < max_hp:
+                print("You drink a health potion.")
+                you.health += hp_pot.heal
+                if you.health > max_hp:
+                    you.health = max_hp
+            print('HP: %s' % you.health)
+        else:
+            "You don\'t have a health potion."
+        if hp_pot not in your_inv:
+            print("You don\'t have a health potion.")
 
     if command == 'hp':
         print(str(you.health)+'/'+str(max_hp))
@@ -365,6 +397,7 @@ while True:
                 if you.money >= item_buy.money:
                     print("You buy a %s." % item_buy.name)
                     your_inv.append(item_buy)
+                    you.money -= item_buy.money
                     if item_buy in armor_shop:
                         max_hp += item_buy.health
                     if item_buy in weapon_shop:
@@ -380,7 +413,7 @@ while True:
         weapon_shop = [excalibur, giant_sword, vampiric_sword, longsword]
         shop = [viking_helmet, thornmail, giants_belt, tabi_boots, cloth_armor, breastplate, hp_pot, giant_hp_pot,
                 excalibur, giant_sword, vampiric_sword, longsword]
-        your_inv = [longsword]
+
         if current_node == spawn_n:
             for i in your_inv:
                 print('YOUR INV:')
@@ -409,6 +442,7 @@ while True:
                     print('You sell a %s.' % sold.name)
                     you.money += sold.money
                     your_inv.remove(sold)
+                    you.money += sold.money
                     if sold in armor_shop:
                         max_hp -= sold.health
                     if sold in weapon_shop:
@@ -439,12 +473,15 @@ while True:
             print([])
 
     if command == 'fight':
+        you.fight(current_node.enemy_in)
+        if you.health <= 0:
+            current_node = spawn_n
+
+    if command == 'fight evil':
         if current_node.enemy_in == the_villain and excalibur in your_inv:
             you.fight(current_node.enemy_in)
         else:
-            print('You are not the chose one.')
-        if current_node.enemy_in == current_node.enemy_in:
-            you.fight(current_node.enemy_in)
+            print('You are not the chosen one.')
 
     if command in directions:
         try:
