@@ -6,15 +6,6 @@ class Item(object):
         self.name = name
         self.money = money
 
-    # BUY
-    # def buy(self):
-    #     if you.money >= self.money:
-    #         print("You buy a %s." % self.name)
-    #         you.money -= self.money
-    #         your_inv.append(self)
-    #     elif you.money < self.money:
-    #         print("You don't have enough money.")
-
 
 class Weapon(Item):
     def __init__(self, name, money, damage, lifesteal, description):
@@ -22,26 +13,6 @@ class Weapon(Item):
         self.damage = damage
         self.lifesteal = lifesteal
         self.description = description
-
-        # def sell():
-        #     if current_node == spawn_n:
-        #         if self in your_inv:
-        #             print("You sell the %s for %s gold" % (self.name, self.money))
-        #             you.money += self.money
-        #             your_inv.remove(self.name)
-        #             if self in weapon_shop:
-        #                 you.attack -= self.damage
-        #                 you.lifesteal -= self.lifesteal
-        #     else:
-        #         print("You don't have a %s" % self.name)
-    # BUY
-    # def buy(self):
-    #     if you.money >= self.money:
-    #         print("You buy a %s." % self.name)
-    #         you.money -= self.money
-    #         your_inv.append(self)
-    #     elif you.money < self.money:
-    #         print("You don't have enough money.")
 
 
 class Consumable(Item):
@@ -56,29 +27,11 @@ class Consumable(Item):
         else:
             print("You don't have any consumables.")
 
-    # BUY
-    # def buy(self):
-    #     if you.money >= self.money:
-    #         print("You buy a %s." % self.name)
-    #         you.money -= self.money
-    #         your_inv.append(self)
-    #     elif you.money < self.money:
-    #         print("You don't have enough money.")
-
 
 class Armor(Item):
     def __init__(self, name, health, money):
         super(Armor, self).__init__(name, money)
         self.health = health
-
-    # BUY
-    # def buy(self):
-    # if you.money >= self.money:
-    #     print("You buy a %s." % self.name)
-    #     you.money -= self.money
-    #     your_inv.append(self)
-    # elif you.money < self.money:
-    #     print("You don't have enough money.")
 
 
 class Longsword(Weapon):
@@ -235,8 +188,8 @@ giants_belt = Giantsbelt('Giants Belt', 500, 600)
 tabi_boots = Tabiboots('Tabi Boots', 200, 300)
 cloth_armor = Clotharmor('Cloth Armor', 300, 400)
 breastplate = Breastplate('Breastplate', 400, 500)
-money_bag = Item('Money bag', 100)
-giant_money_bag = Item('Giant money bag', 250)
+money_bag = Item('Money bag', 150)
+giant_money_bag = Item('Giant money bag', 300)
 
 
 your_inv = []
@@ -245,9 +198,9 @@ max_inv = [1, 2, 3, 4, 5, 6]
 key = Item('Key', 0)
 you = Character("", 100, "", 10, 0, 0, your_inv)
 demon = Enemy("Bull Demon King", 2000, "a giant, tough bull.", 100, 0, 1000000, giant_money_bag, 2000)
-turtle = Enemy("Turtle", 200, "a sturdy blue turtle.", 20, 0, 0, money_bag, 200)
-turtle1 = Enemy("Turtle", 200, "a sturdy blue turtle.", 20, 0, 0, money_bag, 200)
-tiger = Enemy("Tiger", 400, "a ferocious white tiger.", 40, 0, 0, money_bag, 400)
+turtle = Enemy("Turtle", 200, "a sturdy blue turtle.", 20, 0, 100, money_bag, 200)
+turtle1 = Enemy("Turtle", 200, "a sturdy blue turtle.", 20, 0, 100, money_bag, 200)
+tiger = Enemy("Tiger", 400, "a ferocious white tiger.", 40, 0, 200, money_bag, 400)
 minion = Enemy("Minion", 50, "a weak minion.", 5, 0, 50, hp_pot, 50)
 Memes = Enemy('All the memes', 10000000000000, 'All the memes', 1000000000000000, 0, 100000000000000000000000000, [],
               10000000000000)
@@ -260,12 +213,12 @@ phoenix_n = Room("Phoenix (North)", None, None, None, None,
                  None, None, "phoenix_tower_intersection_n", "spawn_n", 'You see a path, a spawn platform, '
                                                                         'and a phoenix.', None)
 phoenix_tower_intersection_n = Room("Phoenix-Tower Intersection (North)", "lane_high_middle", None, None, None,
-                                    "mana_buff_camp_n", None, None, "phoenix_n", 'You see a turtle, a phoenix, and '
-                                                                                 'a tower', None)
+                                    "turtle_n", None, None, "phoenix_n", 'You see a turtle, a phoenix, and '
+                                                                         'a tower', None)
 turtle_n = Room("Turtle Camp (North)", "bull_demon_king_intersection_n", None, None, None, None,
                 "phoenix_tower_intersection_n", None, None, 'You see two paths and a turtle', turtle)
 bull_demon_king_intersection_n = Room("Bull Demon King Intersection (North)", "bull_demon_king_intersection_s",
-                                      "bull_demon_king", "lane_high_middle", "mana_buff_camp_n", None, None, None, None,
+                                      "bull_demon_king", "lane_high_middle", "turtle_n", None, None, None, None,
                                       'You see a turtle, a path, and a demon.', minion)
 lane_high_middle = Room("Lane High Middle", "lane_middle", "bull_demon_king_intersection_n", None,
                         "phoenix_tower_intersection_n", None, None, "tiger_camp", None,
@@ -284,7 +237,7 @@ bull_demon_king = Room("Bull Demon King", None, None, None, None, None, "bull_de
 turtle_s = Room("Turtle Camp (South)", None, None, None, "bull_demon_king_intersection_s", None, None,
                 "phoenix_tower_intersection_s", None, 'You see two paths and a turtle', turtle1)
 phoenix_tower_intersection_s = Room("Phoenix-Tower Intersection (South)", None, None, None, "lane_low_middle",
-                                    "phoenix_s", None, None, "mana_buff_camp_s",
+                                    "phoenix_s", None, None, "turtle_s",
                                     'You see a tower, a phoenix, and a turtle.', minion)
 phoenix_s = Room("Phoenix (South)", None, None, None, None, "spawn_s", "phoenix_tower_intersection_s", None, None,
                  'You see a path, a spawn platform, and a phoenix.', None)
@@ -313,9 +266,6 @@ while True:
     if current_node == spawn_n:
         if you.health < max_hp:
             you.health = max_hp
-
-    if len(your_inv) >= len(max_inv):
-        print("Your inventory is full.")
 
     if current_node == end_gate:
         if excalibur in your_inv:
@@ -376,20 +326,22 @@ while True:
 
         if current_node == spawn_n:
             print("---SHOP---"
-                  "\nVIKING HELMET(0)----450 G"
-                  "\nTHORNMAIL(1)--------1100 G"
-                  "\nGIANTS BELT(2)------600 G"
-                  "\nTABI BOOTS(3)-------300 G"
-                  "\nCLOTH ARMOR(4)------400 G"
-                  "\nBREASTPLATE(5)------500 G"
-                  "\nHP POT(6)-----------50 G"
-                  "\nGIANT HP POT(7)-----100 G"
-                  "\nEXCALIBUR(8)--------3600 G"
-                  "\nGIANT SWORD(9)------1300 G"
-                  "\nVAMPIRIC SWORD(10)--900 G"
-                  "\nLONGSWORD(11)-------350 G"
+                  "\nVIKING HELMET(0)------450 G"
+                  "\nTHORNMAIL(1)----------1100 G"
+                  "\nGIANTS BELT(2)--------600 G"
+                  "\nTABI BOOTS(3)---------300 G"
+                  "\nCLOTH ARMOR(4)--------400 G"
+                  "\nBREASTPLATE(5)--------500 G"
+                  "\nHP POT(6)-------------50 G"
+                  "\nGIANT HP POT(7)-------100 G"
+                  "\nEXCALIBUR(8)----------3600 G"
+                  "\nGIANT SWORD(9)--------1300 G"
+                  "\nVAMPIRIC SWORD(10)----900 G"
+                  "\nLONGSWORD(11)---------350 G"
+                  "\nMONEY BAGS(12)--------150 G"
+                  "\nGIANT MONEY BAGS(13)--300 G"
                   "\n----------")
-            item_buying = input("What do you want to buy? (Type in the number)\n>_")
+            item_buying = input("What do you want to buy? (Type in the number)\nYOUR MONEY: %s\n>_" % you.money)
             try:
                 item_buy = shop[int(item_buying)]
                 if you.money < item_buy.money:

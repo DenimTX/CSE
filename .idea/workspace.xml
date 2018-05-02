@@ -18,8 +18,8 @@
       <file leaf-file-name="Denim Xiong - CYOA.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/Denim Xiong - CYOA.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="246">
-              <caret line="168" column="33" lean-forward="false" selection-start-line="168" selection-start-column="33" selection-end-line="168" selection-end-column="33" />
+            <state relative-caret-position="143">
+              <caret line="134" column="38" lean-forward="false" selection-start-line="134" selection-start-column="29" selection-end-line="134" selection-end-column="38" />
               <folding />
             </state>
           </provider>
@@ -36,21 +36,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>name</find>
-      <find>exit(</find>
-      <find>max</find>
-      <find>fight</find>
-      <find>potion</find>
-      <find>heal</find>
-      <find>inventory</find>
-      <find>hppot</find>
-      <find>demon</find>
-      <find>= Enemy</find>
-      <find>def hit</find>
-      <find>you = Ch</find>
-      <find>def buy</find>
-      <find>stat</find>
-      <find>def</find>
       <find>vampiricsword</find>
       <find>you =</find>
       <find>def heal</find>
@@ -66,12 +51,28 @@
       <find>def fight</find>
       <find>target.death</find>
       <find>hit</find>
+      <find>lifesteal</find>
+      <find>mana_buff_camp</find>
+      <find>mana_buff_camp_s</find>
+      <find>turtle</find>
+      <find>is full</find>
+      <find>if command == 'buy</find>
+      <find>full</find>
+      <find>inv</find>
+      <find>exit</find>
+      <find>'fight</find>
+      <find>your_inv =</find>
+      <find>money</find>
+      <find>bags</find>
+      <find>---</find>
+      <find>money_bag</find>
     </findStrings>
     <replaceStrings>
       <replace>&quot;</replace>
       <replace>'</replace>
       <replace>e</replace>
       <replace>z</replace>
+      <replace>turtle_s</replace>
     </replaceStrings>
   </component>
   <component name="Git.Settings">
@@ -288,7 +289,7 @@
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.48335975" sideWeight="0.5058565" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.38985738" sideWeight="0.4941435" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.15372425" sideWeight="0.4941435" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24962178" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32991454" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
@@ -623,8 +624,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/Denim Xiong - CYOA.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="246">
-          <caret line="168" column="33" lean-forward="false" selection-start-line="168" selection-start-column="33" selection-end-line="168" selection-end-column="33" />
+        <state relative-caret-position="143">
+          <caret line="134" column="38" lean-forward="false" selection-start-line="134" selection-start-column="29" selection-end-line="134" selection-end-column="38" />
           <folding />
         </state>
       </provider>
