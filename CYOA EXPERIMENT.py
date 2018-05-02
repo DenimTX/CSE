@@ -147,6 +147,7 @@ class Character(object):
         self.health = health
         self.description = description
         self.attack = attack
+        self.death = False
         self.lifesteal = lifesteal
         self.money = money
         self.inventory = inventory
@@ -161,12 +162,11 @@ class Character(object):
             print('You died.')
             exit(0)
         if target.health <= 0:
+            target.death = True
             print('%s died.' % target.name)
             print('You received %s gold.' % target.money)
             print('HP: %s' % you.health)
             self.money += target.money
-            if target.health < 0:
-                target.health = 0
             # Loot
             choice = random.randint(1, 20)
             loot = random.randint(1, 20)
@@ -474,6 +474,8 @@ while True:
 
     if command == 'fight':
         you.fight(current_node.enemy_in)
+        if you.health <= 0:
+            current_node = spawn_n
 
     if command == 'fight evil':
         if current_node.enemy_in == the_villain and excalibur in your_inv:
