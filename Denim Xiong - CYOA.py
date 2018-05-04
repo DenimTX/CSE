@@ -430,6 +430,9 @@ while True:
     if command == 'fight evil':
         if current_node.enemy_in == the_villain and excalibur in your_inv:
             you.fight(current_node.enemy_in)
+            if current_node.enemy_in == the_villain:
+                if the_villain.health <= 0:
+                    current_node = 'the_end'
         else:
             print('You are not the chosen one.')
 
