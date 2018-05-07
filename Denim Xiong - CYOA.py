@@ -207,14 +207,17 @@ Memes = Enemy('All the memes', 10000000000000, 'All the memes', 1000000000000000
 the_villain = Enemy('Evil Man', 2500, 'a wicked, foul man', 150, 0, 100, useless_item, 2500)
 
 
-spawn_n = Room("Spawn (North)", None, None, None, None, None, None, "phoenix_n", None, 'You see a phoenix and a spawn '
+spawn_n = Room("Spawn (North)", None, None, None, None, None, None, "phoenix_n", None, 'You see a phoenix to the '
+                                                                                       'southeast and a spawn '
                                                                                        'platform', None)
 phoenix_n = Room("Phoenix (North)", None, None, None, None,
-                 None, None, "phoenix_tower_intersection_n", "spawn_n", 'You see a path, a spawn platform, '
+                 None, None, "phoenix_tower_intersection_n", "spawn_n", 'You see a path to the '
+                                                                        'southeast, a spawn platform to the northwest, '
                                                                         'and a phoenix.', None)
 phoenix_tower_intersection_n = Room("Phoenix-Tower Intersection (North)", "lane_high_middle", None, None, None,
-                                    "turtle_n", None, None, "phoenix_n", 'You see a turtle, a phoenix, and '
-                                                                         'a tower', None)
+                                    "turtle_n", None, None, "phoenix_n", 'You see a turtle to the southwest'
+                                                                         ', a phoenix to the northwest, and '
+                                                                         'a tower.', None)
 turtle_n = Room("Turtle Camp (North)", "bull_demon_king_intersection_n", None, None, None, None,
                 "phoenix_tower_intersection_n", None, None, 'You see two paths and a turtle', turtle)
 bull_demon_king_intersection_n = Room("Bull Demon King Intersection (North)", "bull_demon_king_intersection_s",
@@ -357,6 +360,9 @@ while True:
                         you.lifesteal += item_buy.lifesteal
             except ValueError:
                 print("That is not an item.")
+            except IndexError:
+                print("That is not an item.")
+
         elif current_node != spawn_n:
             print('You are not in spawn.')
 
