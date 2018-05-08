@@ -129,6 +129,7 @@ class Character(object):
     def fight(self, enemy):
         try:
             if enemy == current_node.enemy_in:
+                print('/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\\')
                 print(you.name + ",", you.description, "starts fighting with %s" % enemy.name + ",", enemy.description)
                 enemy.health = enemy.orig_hp
                 while enemy.health != 0:
@@ -141,7 +142,7 @@ class Character(object):
                     elif choice == enemy:
                         self.hit(enemy)
                         enemy.health += enemy.lifesteal
-                print()
+                print('/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\\')
         except AttributeError:
             print("There's no enemy here you fool.")
 
@@ -210,45 +211,72 @@ the_villain = Enemy('Evil Man', 2500, 'a wicked, foul man', 150, 0, 100, useless
 spawn_n = Room("Spawn (North)", None, None, None, None, None, None, "phoenix_n", None, 'You see a phoenix to the '
                                                                                        'southeast and a spawn '
                                                                                        'platform', None)
+
 phoenix_n = Room("Phoenix (North)", None, None, None, None,
                  None, None, "phoenix_tower_intersection_n", "spawn_n", 'You see a path to the '
                                                                         'southeast, a spawn platform to the northwest, '
                                                                         'and a phoenix.', None)
+
 phoenix_tower_intersection_n = Room("Phoenix-Tower Intersection (North)", "lane_high_middle", None, None, None,
                                     "turtle_n", None, None, "phoenix_n", 'You see a turtle to the southwest'
                                                                          ', a phoenix to the northwest, and '
                                                                          'a tower.', None)
+
 turtle_n = Room("Turtle Camp (North)", "bull_demon_king_intersection_n", None, None, None, None,
-                "phoenix_tower_intersection_n", None, None, 'You see two paths and a turtle', turtle)
+                "phoenix_tower_intersection_n", None, None, 'You see two paths, one to the northeast, another to the '
+                                                            ' south, and a turtle.', turtle)
+
 bull_demon_king_intersection_n = Room("Bull Demon King Intersection (North)", "bull_demon_king_intersection_s",
                                       "bull_demon_king", "lane_high_middle", "turtle_n", None, None, None, None,
-                                      'You see a turtle, a path, and a demon.', minion)
+                                      'You see a turtle to the north, a path to the south, and a demon to the'
+                                      ' west.', minion)
+
 lane_high_middle = Room("Lane High Middle", "lane_middle", "bull_demon_king_intersection_n", None,
                         "phoenix_tower_intersection_n", None, None, "tiger_camp", None,
-                        'You see two paths, a tower, and a tiger.', minion)
+                        'You see two paths, one to south, one to the north, a tower to the north, and a tiger to the '
+                        'southeast.', minion)
+
 lane_middle = Room("Lane Middle", "lane_low_middle", None, "tiger_camp", "lane_high_middle", None, None,
-                   None, None, 'You see two paths and a tiger.', minion)
+                   None, None, 'You see two paths, one to the north, one to the south, and a tiger to the east'
+                               '.', minion)
+
 lane_low_middle = Room("Lane Low Middle", "phoenix_tower_intersection_s", "bull_demon_king_intersection_s", None,
-                       "lane_middle", None, "tiger_camp", None, None, 'You see two paths, a tower, and a demon', minion)
+                       "lane_middle", None, "tiger_camp", None, None, 'You see two paths, one to the west, one to the '
+                                                                      'north, a tower to the south, and a tiger to the'
+                                                                      ' northeast.', minion)
+
 tiger_camp = Room("Tiger Camp", None, "lane_middle", None, None, "lane_low_middle", None, None,
-                  "lane_high_middle", 'You see three paths and a tiger', tiger)
-bull_demon_king_intersection_s = Room("Bull Demon King Intersection (South)", "mana_buff_camp", "bull_demon_king",
+                  "lane_high_middle", 'You see three paths, west, northeast, southeast, and a tiger', tiger)
+
+bull_demon_king_intersection_s = Room("Bull Demon King Intersection (South)", "turtle_s", "bull_demon_king",
                                       "lane_low_middle", "bull_demon_king_intersection_n", None, None, None, None,
-                                      'You see two paths, a turtle, and a demon', minion)
+                                      'You see two paths, one to the north, another to the east, a turtle to the south'
+                                      ', and a demon to the west.', minion)
+
 bull_demon_king = Room("Bull Demon King", None, None, None, None, None, "bull_demon_king_intersection_n",
-                       "bull_demon_king_intersection_s", None, 'You see two paths and a demon', demon)
+                       "bull_demon_king_intersection_s", None, 'You see two paths, one to the northeast, another to'
+                                                               ' the southeast, and a demon.', demon)
+
 turtle_s = Room("Turtle Camp (South)", None, None, None, "bull_demon_king_intersection_s", None, None,
-                "phoenix_tower_intersection_s", None, 'You see two paths and a turtle', turtle1)
+                "phoenix_tower_intersection_s", None, 'You see two paths, one to the north, another to the '
+                                                      'southeast, and a turtle', turtle1)
+
 phoenix_tower_intersection_s = Room("Phoenix-Tower Intersection (South)", None, None, None, "lane_low_middle",
                                     "phoenix_s", None, None, "turtle_s",
-                                    'You see a tower, a phoenix, and a turtle.', minion)
+                                    'You see a tower to the north, a phoenix to the southwest, and a turtle to the '
+                                    'northwest.', minion)
+
 phoenix_s = Room("Phoenix (South)", None, None, None, None, "spawn_s", "phoenix_tower_intersection_s", None, None,
-                 'You see a path, a spawn platform, and a phoenix.', None)
+                 'You see a path to the northeast, a spawn platform to the southwest, and a phoenix.', None)
+
 spawn_s = Room("Spawn (South)", 'end_gate', None, None, None, None, "phoenix_s", None, None,
-               'You see a spawn platform and a phoenix.', None)
+               'You see a spawn platform and a phoenix to the northeast.', None)
+
 end_gate = Room("End Gate", None, None, None, "spawn_s", None, None, None, None, 'You see a path north and '
                                                                                  'a dark shadow.', None)
-the_end = Room("THE END", None, None, None, 'end_gate', None, None, None, None, 'Thanks for playing!', Memes)
+
+the_end = Room("THE END", None, None, None, 'end_gate', None, None, None, None, 'CHANGE CHANGE CHANGE CHANGE CHANGE',
+               Memes)
 
 current_node = spawn_n
 directions = ['southeast', 'northwest', 'south', 'west', 'east', 'north', 'southwest', 'northeast']
@@ -263,6 +291,7 @@ character_description = input('How would you describe yourself?\na:')
 you.description = ('a' + ' ' + character_description)
 
 while True:
+    print('')
     print(current_node.name)
     print(current_node.description)
 
@@ -274,6 +303,21 @@ while True:
         if excalibur in your_inv:
             end_gate.enemy_in = the_villain
             end_gate.south = 'the_end'
+            spawn_s.description = 'You see a spawn platform, a phoenix to the northeast and a dark gate to the south.'
+            if the_villain.health <= 0:
+                end_gate.south = 'the_end'
+                the_end.description = (' _____ _   _   ___   _   _  _   __ _____  ______ ___________  ______ _       __'
+                                       '___   _______ _   _ _____\n'
+                                       '|_   _| | | | / _ \ | \ | || | / //  ___| |  ___|  _  | ___ \ | ___ \ |     / _'
+                                       ' \ \ / /_   _| \ | |  __ \\\n'
+                                       '  | | | |_| |/ /_\ \|  \| || |/ / \ `--.  | |_  | | | | |_/ / | |_/ / |    / /_'
+                                       '\ \ V /  | | |  \| | |  \/\n'
+                                       '  | | |  _  ||  _  || . ` ||    \  `--. \ |  _| | | | |    /  |  __/| |    |  _'
+                                       '  |\ /   | | | . ` | | __ \n'
+                                       '  | | | | | || | | || |\  || |\  \/\__/ / | |   \ \_/ / |\ \  | |   | |____| | '
+                                       '| || |  _| |_| |\  | |_\ \\\n'
+                                       '  \_/ \_| |_/\_| |_/\_| \_/\_| \_/\____/  \_|    \___/\_| \_| \_|   \_____/\_| '
+                                       '|_/\_/  \___/\_| \_/\____/\n')
 
     command = input('>_ ').lower().strip()
 
@@ -309,23 +353,23 @@ while True:
         print(str(you.health)+'/'+str(max_hp))
 
     if command == 'stats':
-        print('-------------------------------')
+        print('_______________________________')
         print('MAX HP' + ' - ' + str(max_hp))
         print('ATT' + ' - ' + str(you.attack))
         print('LS' + ' - ' + str(you.lifesteal))
-        print('-------------------------------')
+        print('_______________________________')
 
     if command == 'me':
-        print('-------------------------------')
+        print('_______________________________')
         print(you.name)
         print(you.description)
-        print('-------------------------------')
+        print('_______________________________')
 
     if command == 'buy':
         armor_shop = [viking_helmet, thornmail, giants_belt, tabi_boots, cloth_armor, breastplate]
         weapon_shop = [excalibur, giant_sword, vampiric_sword, longsword]
         shop = [viking_helmet, thornmail, giants_belt, tabi_boots, cloth_armor, breastplate, hp_pot, giant_hp_pot,
-                excalibur, giant_sword, vampiric_sword, longsword]
+                excalibur, giant_sword, vampiric_sword, longsword, useless_item]
 
         if current_node == spawn_n:
             print("---SHOP---"
@@ -343,6 +387,7 @@ while True:
                   "\nLONGSWORD(11)---------350 G"
                   "\nMONEY BAGS(12)--------150 G"
                   "\nGIANT MONEY BAGS(13)--300 G"
+                  "\nUSELESS ITEM(14)------0 G"
                   "\n----------")
             item_buying = input("What do you want to buy? (Type in the number)\nYOUR MONEY: %s\n>_" % you.money)
             try:
@@ -450,8 +495,15 @@ while True:
     elif command not in all_the_commands:
         print("Command not found.")
 
-    print("---------------------------------------------------------------------------------------------------------"
-          "-----------------------------------------")
-    print()
+    print(''
+          ''
+          ''
+          '')
+    print("____________________________________________________________________________________________________________"
+          "_________________________________________________________")
+    print(''
+          ''
+          ''
+          '')
 
 # Denim Xiong
