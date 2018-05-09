@@ -369,11 +369,12 @@ while True:
         armor_shop = [viking_helmet, thornmail, giants_belt, tabi_boots, cloth_armor, breastplate]
         weapon_shop = [excalibur, giant_sword, vampiric_sword, longsword]
         shop = [viking_helmet, thornmail, giants_belt, tabi_boots, cloth_armor, breastplate, hp_pot, giant_hp_pot,
-                excalibur, giant_sword, vampiric_sword, longsword, useless_item]
+                excalibur, giant_sword, vampiric_sword, longsword, money_bag, giant_money_bag, useless_item]
 
         if current_node == spawn_n:
             print("---SHOP---"
-                  "\nVIKING HELMET(0)------450 G"
+                  "\n_______________________\n\nVIKING HELMET(0)\n%s damage.\n%s lifesteal.\n    450 G\n"
+                  "_______________________"
                   "\nTHORNMAIL(1)----------1100 G"
                   "\nGIANTS BELT(2)--------600 G"
                   "\nTABI BOOTS(3)---------300 G"
@@ -395,6 +396,7 @@ while True:
                 if you.money < item_buy.money:
                     print("You're poor go grind some more.")
                 if you.money >= item_buy.money:
+                    print("You are about to buy a %s %s." % (item_buy.name, item_buy.description))
                     print("You buy a %s." % item_buy.name)
                     your_inv.append(item_buy)
                     you.money -= item_buy.money
@@ -415,7 +417,7 @@ while True:
         armor_shop = [viking_helmet, thornmail, giants_belt, tabi_boots, cloth_armor, breastplate]
         weapon_shop = [excalibur, giant_sword, vampiric_sword, longsword]
         shop = [viking_helmet, thornmail, giants_belt, tabi_boots, cloth_armor, breastplate, hp_pot, giant_hp_pot,
-                excalibur, giant_sword, vampiric_sword, longsword]
+                excalibur, giant_sword, vampiric_sword, longsword, money_bag, giant_money_bag, useless_item]
 
         if current_node == spawn_n:
             for i in your_inv:
@@ -423,18 +425,22 @@ while True:
                 print('[ ' + i.name + ' ]')
             if len(your_inv) == 0:
                 print([])
-            print("\nVIKING HELMET(0)"
-                  "\nTHORNMAIL(1)"
-                  "\nGIANTS BELT(2)"
-                  "\nTABI BOOTS(3)"
-                  "\nCLOTH ARMOR(4)"
-                  "\nBREASTPLATE(5)"
-                  "\nHP POT(6)"
-                  "\nGIANT HP POT(7)"
-                  "\nEXCALIBUR(8)"
-                  "\nGIANT SWORD(9)"
-                  "\nVAMPIRIC SWORD(10)"
-                  "\nLONGSWORD(11)"
+            print("---SHOP---"
+                  "\nVIKING HELMET(0)------450 G"
+                  "\nTHORNMAIL(1)----------1100 G"
+                  "\nGIANTS BELT(2)--------600 G"
+                  "\nTABI BOOTS(3)---------300 G"
+                  "\nCLOTH ARMOR(4)--------400 G"
+                  "\nBREASTPLATE(5)--------500 G"
+                  "\nHP POT(6)-------------50 G"
+                  "\nGIANT HP POT(7)-------100 G"
+                  "\nEXCALIBUR(8)----------3600 G"
+                  "\nGIANT SWORD(9)--------1300 G"
+                  "\nVAMPIRIC SWORD(10)----900 G"
+                  "\nLONGSWORD(11)---------350 G"
+                  "\nMONEY BAGS(12)--------150 G"
+                  "\nGIANT MONEY BAGS(13)--300 G"
+                  "\nUSELESS ITEM(14)------0 G"
                   "\n----------")
             selling = input('What do you want to sell?')
             try:
