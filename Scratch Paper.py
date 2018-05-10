@@ -9,3 +9,20 @@ print(' _____\n'
       '|  _  |\n'
       '| |_| |\n'
       '|_____|\n')
+
+print("---SHOP---"
+      "\n____________________________________________________________________________________________"
+      "\n\nVIKING HELMET(0)        THORNMAIL(1)             GIANTS BELT(2)          TABI BOOTS(3)"
+      "\n%s health.              %s health.               %s health.              %s health.\n"
+      "450 G                   1100 G                   600 G                   300 G\n"
+      "\nCLOTH ARMOR(4)          BREASTPLATE(5)           HP POT(6)               GIANT HP POT(7)"
+      "\n%s health.              %s health.               %s health.              %s health."
+      "\n400 G                   500 G                    50 G                    100 G\n"
+
+      "\nEXCALIBUR(8)            GIANT SWORD(9)           VAMPIRIC SWORD(10)      LONGSWORD(11)"
+      "\n%s damage.              %s damage.               %s damage.              %s damage."
+      "\n%s lifesteal.           %s lifesteal.            %s lifesteal.           %s lifesteal."
+      "\n3600 G                  1300 G                   900 G                   350 G\n"
+      "\nMONEY BAGS(12)          GIANT MONEY BAGS(13)     USELESS ITEM(14)\n150 G                   300 G  "
+      "                  0 G\n_______________________________________"
+      "_____________________________________________________")

@@ -2,22 +2,23 @@ import random
 
 
 class Item(object):
-    def __init__(self, name, money):
+    def __init__(self, name, money, description):
         self.name = name
         self.money = money
+        self.description = description
 
 
 class Weapon(Item):
     def __init__(self, name, money, damage, lifesteal, description):
-        super(Weapon, self).__init__(name, money)
+        super(Weapon, self).__init__(name, money, description)
         self.damage = damage
         self.lifesteal = lifesteal
         self.description = description
 
 
 class Consumable(Item):
-    def __init__(self, heal, name, money):
-        super(Consumable, self).__init__(name, money)
+    def __init__(self, heal, name, money, description):
+        super(Consumable, self).__init__(name, money, description)
         self.heal = heal
 
     def heal(self):
@@ -29,8 +30,8 @@ class Consumable(Item):
 
 
 class Armor(Item):
-    def __init__(self, name, health, money):
-        super(Armor, self).__init__(name, money)
+    def __init__(self, name, health, money, description):
+        super(Armor, self).__init__(name, money, description)
         self.health = health
 
 
@@ -55,43 +56,43 @@ class Excalibur(Weapon):
 
 
 class Gianthppot(Consumable):
-    def __init__(self, heal, name, money):
-        super(Gianthppot, self).__init__(heal, name, money)
+    def __init__(self, heal, name, money, description):
+        super(Gianthppot, self).__init__(heal, name, money, description)
 
 
 class Hppot(Consumable):
-    def __init__(self, heal, name, money):
-        super(Hppot, self).__init__(heal, name, money)
+    def __init__(self, heal, name, money, description):
+        super(Hppot, self).__init__(heal, name, money, description)
 
 
 class Vikinghelmet(Armor):
-    def __init__(self, name, health, money):
-        super(Vikinghelmet, self).__init__(name, health, money)
+    def __init__(self, name, health, money, description):
+        super(Vikinghelmet, self).__init__(name, health, money, description)
 
 
 class Thornmail(Armor):
-    def __init__(self, name, health, money):
-        super(Thornmail, self).__init__(name, health, money)
+    def __init__(self, name, health, money, description):
+        super(Thornmail, self).__init__(name, health, money, description)
 
 
 class Giantsbelt(Armor):
-    def __init__(self, name, health, money):
-        super(Giantsbelt, self).__init__(name, health, money)
+    def __init__(self, name, health, money, description):
+        super(Giantsbelt, self).__init__(name, health, money, description)
 
 
 class Tabiboots(Armor):
-    def __init__(self, name, health, money):
-        super(Tabiboots, self).__init__(name, health, money)
+    def __init__(self, name, health, money, description):
+        super(Tabiboots, self).__init__(name, health, money, description)
 
 
 class Clotharmor(Armor):
-    def __init__(self, name, health, money):
-        super(Clotharmor, self).__init__(name, health, money)
+    def __init__(self, name, health, money, description):
+        super(Clotharmor, self).__init__(name, health, money, description)
 
 
 class Breastplate(Armor):
-    def __init__(self, name, health, money):
-        super(Breastplate, self).__init__(name, health, money)
+    def __init__(self, name, health, money, description):
+        super(Breastplate, self).__init__(name, health, money, description)
 
 
 class Character(object):
@@ -173,30 +174,29 @@ class Room(object):
         current_node = globals()[getattr(self, direction)]
 
 
-useless_item = Item('Useless Item', 0)
+useless_item = Item('Useless Item', 0, 'A useless item.')
 longsword = Longsword('Longsword', 350, 30, 0, 'A long sword.')
-vampiric_sword = Vampiricsword('Vampiric Sword', 900, 15, 3, 'A mysterious sword that gives you 3 health when '
+vampiric_sword = Vampiricsword('Vampiric Sword', 900, 15, 3, 'A mysterious sword that gives you health when '
                                                              'you attack an enemy.\nDoes 15 damage.')
 giant_sword = Giantsword('Giant Sword', 1300, 50, 0, 'The sword of a giant.\nDoes 50 damage.')
 excalibur = Excalibur('Excalibur', 3600, 75, 0, 'A sword fit for a hero.\nDoes 75 damage.')
 
-giant_hp_pot = Gianthppot(200, "Giant Health Potion", 100)
-hp_pot = Hppot(100, "Health Potion", 50)
+giant_hp_pot = Gianthppot(200, "Giant Health Potion", 100, 'A pot that heals you when you drink it.')
+hp_pot = Hppot(100, "Health Potion", 50, 'A pot that heals you when you drink it.')
 
-viking_helmet = Vikinghelmet('Viking Helmet', 350, 450)
-thornmail = Thornmail('Thornmail', 1000, 1100)
-giants_belt = Giantsbelt('Giants Belt', 500, 600)
-tabi_boots = Tabiboots('Tabi Boots', 200, 300)
-cloth_armor = Clotharmor('Cloth Armor', 300, 400)
-breastplate = Breastplate('Breastplate', 400, 500)
-money_bag = Item('Money bag', 150)
-giant_money_bag = Item('Giant money bag', 300)
+viking_helmet = Vikinghelmet('Viking Helmet', 350, 450, 'A helmet worn by vikings.')
+thornmail = Thornmail('Thornmail', 1000, 1100, 'Very sturdy chain armor.')
+giants_belt = Giantsbelt('Giants Belt', 500, 600, 'A belt worn by giants.')
+tabi_boots = Tabiboots('Tabi Boots', 200, 300, 'Boots worn by ninjas.')
+cloth_armor = Clotharmor('Cloth Armor', 300, 400, 'Generic cloth armor.')
+breastplate = Breastplate('Breastplate', 400, 500, 'A piece of armor covering the chest.')
+money_bag = Item('Money bag', 150, 'A bag of gold.')
+giant_money_bag = Item('Giant money bag', 300, 'A giant bag of gold.')
 
 
 your_inv = []
 max_hp = 100
 max_inv = [1, 2, 3, 4, 5, 6]
-key = Item('Key', 0)
 you = Character("", 100, "", 10, 0, 0, your_inv)
 demon = Enemy("Bull Demon King", 2000, "a giant, tough bull.", 100, 0, 1000000, giant_money_bag, 2000)
 turtle = Enemy("Turtle", 200, "a sturdy blue turtle.", 20, 0, 100, money_bag, 200)
@@ -372,31 +372,39 @@ while True:
                 excalibur, giant_sword, vampiric_sword, longsword, money_bag, giant_money_bag, useless_item]
 
         if current_node == spawn_n:
+
             print("---SHOP---"
-                  "\n_______________________\n\nVIKING HELMET(0)\n%s damage.\n%s lifesteal.\n    450 G\n"
-                  "_______________________"
-                  "\nTHORNMAIL(1)----------1100 G"
-                  "\nGIANTS BELT(2)--------600 G"
-                  "\nTABI BOOTS(3)---------300 G"
-                  "\nCLOTH ARMOR(4)--------400 G"
-                  "\nBREASTPLATE(5)--------500 G"
-                  "\nHP POT(6)-------------50 G"
-                  "\nGIANT HP POT(7)-------100 G"
-                  "\nEXCALIBUR(8)----------3600 G"
-                  "\nGIANT SWORD(9)--------1300 G"
-                  "\nVAMPIRIC SWORD(10)----900 G"
-                  "\nLONGSWORD(11)---------350 G"
-                  "\nMONEY BAGS(12)--------150 G"
-                  "\nGIANT MONEY BAGS(13)--300 G"
-                  "\nUSELESS ITEM(14)------0 G"
-                  "\n----------")
+                  "\n_________________________________________________________________________________"
+                  "\n\nVIKING HELMET(0)        THORNMAIL(1)             GIANTS BELT(2)          TABI BOOTS(3)"
+                  "\n%s health.             %s health.             %s health.             %s health.\n"
+                  "450 G                   1100 G                   600 G                   300 G\n"
+                  "\nCLOTH ARMOR(4)          BREASTPLATE(5)           HP POT(6)               GIANT HP POT(7)"
+                  "\n%s health.             %s health.              %s heal.               %s heal."
+                  "\n400 G                   500 G                    50 G                    100 G\n"
+
+                  "\nEXCALIBUR(8)            GIANT SWORD(9)           VAMPIRIC SWORD(10)      LONGSWORD(11)"
+                  "\n%s damage.              %s damage.               %s damage.              %s damage."
+                  "\n%s lifesteal.            %s lifesteal.             %s lifesteal.            %s lifesteal."
+                  "\n3600 G                  1300 G                   900 G                   350 G\n"
+                  "\nMONEY BAGS(12)          GIANT MONEY BAGS(13)\n150 G                   300 G"
+                  "\n_______________________________________"
+                  "__________________________________________\n" % (viking_helmet.health, thornmail.health,
+                                                                    giants_belt.health, tabi_boots.health,
+                                                                    cloth_armor.health, breastplate.health,
+                                                                    hp_pot.heal, giant_hp_pot.heal,
+                                                                    excalibur.damage, giant_sword.damage,
+                                                                    vampiric_sword.damage, longsword.damage,
+                                                                    excalibur.lifesteal,
+                                                                    giant_sword.lifesteal,
+                                                                    vampiric_sword.lifesteal,
+                                                                    longsword.lifesteal))
+
             item_buying = input("What do you want to buy? (Type in the number)\nYOUR MONEY: %s\n>_" % you.money)
             try:
                 item_buy = shop[int(item_buying)]
                 if you.money < item_buy.money:
                     print("You're poor go grind some more.")
                 if you.money >= item_buy.money:
-                    print("You are about to buy a %s %s." % (item_buy.name, item_buy.description))
                     print("You buy a %s." % item_buy.name)
                     your_inv.append(item_buy)
                     you.money -= item_buy.money
@@ -505,8 +513,7 @@ while True:
           ''
           ''
           '')
-    print("____________________________________________________________________________________________________________"
-          "_________________________________________________________")
+    print("___________________________________________________________________________________")
     print(''
           ''
           ''

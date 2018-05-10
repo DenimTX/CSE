@@ -14,8 +14,8 @@
       <file leaf-file-name="Denim Xiong - CYOA.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/Denim Xiong - CYOA.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="242">
-              <caret line="385" column="50" lean-forward="true" selection-start-line="385" selection-start-column="50" selection-end-line="385" selection-end-column="50" />
+            <state relative-caret-position="260">
+              <caret line="509" column="88" lean-forward="true" selection-start-line="509" selection-start-column="88" selection-end-line="509" selection-end-column="88" />
               <folding />
             </state>
           </provider>
@@ -24,8 +24,8 @@
       <file leaf-file-name="Scratch Paper.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Scratch Paper.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="170">
-              <caret line="10" column="18" lean-forward="true" selection-start-line="10" selection-start-column="18" selection-end-line="10" selection-end-column="18" />
+            <state relative-caret-position="204">
+              <caret line="12" column="0" lean-forward="false" selection-start-line="12" selection-start-column="0" selection-end-line="27" selection-end-column="62" />
               <folding />
             </state>
           </provider>
@@ -54,6 +54,11 @@
       <find>def buy</find>
       <find>item</find>
       <find>class item</find>
+      <find>longsword</find>
+      <find>class we</find>
+      <find>key</find>
+      <find>you are about</find>
+      <find>__</find>
     </findStrings>
     <replaceStrings>
       <replace>you.maxhp</replace>
@@ -265,7 +270,7 @@
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.48335975" sideWeight="0.5058565" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.66877973" sideWeight="0.4941435" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.62123615" sideWeight="0.4941435" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24962178" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32991454" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
@@ -581,16 +586,16 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/Scratch Paper.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="170">
-          <caret line="10" column="18" lean-forward="true" selection-start-line="10" selection-start-column="18" selection-end-line="10" selection-end-column="18" />
+        <state relative-caret-position="204">
+          <caret line="12" column="0" lean-forward="false" selection-start-line="12" selection-start-column="0" selection-end-line="27" selection-end-column="62" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Denim Xiong - CYOA.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="242">
-          <caret line="385" column="50" lean-forward="true" selection-start-line="385" selection-start-column="50" selection-end-line="385" selection-end-column="50" />
+        <state relative-caret-position="260">
+          <caret line="509" column="88" lean-forward="true" selection-start-line="509" selection-start-column="88" selection-end-line="509" selection-end-column="88" />
           <folding />
         </state>
       </provider>
