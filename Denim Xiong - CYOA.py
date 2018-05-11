@@ -1,4 +1,5 @@
 import random
+import winsound
 
 
 class Item(object):
@@ -283,12 +284,13 @@ directions = ['southeast', 'northwest', 'south', 'west', 'east', 'north', 'south
 short_directions = ['se', 'nw', 's', 'w', 'e', 'n', 'sw', 'ne']
 all_the_commands = ['buy', 'southeast', 'northwest', 'south', 'west', 'east', 'north', 'southwest', 'northeast',
                     'se', 'nw', 's', 'w', 'e', 'n', 'sw', 'ne', 'hp', 'money', 'help', 'inv', 'fight', 'stats', 'me',
-                    'sell', 'buy', 'bigheal', 'heal', 'fight evil']
+                    'sell', 'buy', 'bigheal', 'heal', 'fight evil', 'help1', 'help2']
 
-character_name = input('What do you want to be named?\n>_')
+character_name = input('\nWhat do you want to be named?\n>_')
 you.name = character_name
-character_description = input('How would you describe yourself?\na:')
+character_description = input('How would you describe yourself?\na :')
 you.description = ('a' + ' ' + character_description)
+print('\n\nTYPE IN \'HELP\' FOR HELP.')
 
 while True:
     print('')
@@ -369,7 +371,7 @@ while True:
         armor_shop = [viking_helmet, thornmail, giants_belt, tabi_boots, cloth_armor, breastplate]
         weapon_shop = [excalibur, giant_sword, vampiric_sword, longsword]
         shop = [viking_helmet, thornmail, giants_belt, tabi_boots, cloth_armor, breastplate, hp_pot, giant_hp_pot,
-                excalibur, giant_sword, vampiric_sword, longsword, money_bag, giant_money_bag, useless_item]
+                excalibur, giant_sword, vampiric_sword, longsword, money_bag, giant_money_bag]
 
         if current_node == spawn_n:
 
@@ -405,7 +407,7 @@ while True:
                 if you.money < item_buy.money:
                     print("You're poor go grind some more.")
                 if you.money >= item_buy.money:
-                    print("You buy a %s." % item_buy.name)
+                    print("You buy a %s. %s" % (item_buy.name, item_buy.description))
                     your_inv.append(item_buy)
                     you.money -= item_buy.money
                     if item_buy in armor_shop:
@@ -434,32 +436,27 @@ while True:
             if len(your_inv) == 0:
                 print([])
             print("---SHOP---"
-                  "\nVIKING HELMET(0)------450 G"
-                  "\nTHORNMAIL(1)----------1100 G"
-                  "\nGIANTS BELT(2)--------600 G"
-                  "\nTABI BOOTS(3)---------300 G"
-                  "\nCLOTH ARMOR(4)--------400 G"
-                  "\nBREASTPLATE(5)--------500 G"
-                  "\nHP POT(6)-------------50 G"
-                  "\nGIANT HP POT(7)-------100 G"
-                  "\nEXCALIBUR(8)----------3600 G"
-                  "\nGIANT SWORD(9)--------1300 G"
-                  "\nVAMPIRIC SWORD(10)----900 G"
-                  "\nLONGSWORD(11)---------350 G"
-                  "\nMONEY BAGS(12)--------150 G"
-                  "\nGIANT MONEY BAGS(13)--300 G"
-                  "\nUSELESS ITEM(14)------0 G"
-                  "\n----------")
-            selling = input('What do you want to sell?')
+                  "\n_________________________________________________________________________________"
+                  "\n\nVIKING HELMET(0)        THORNMAIL(1)             GIANTS BELT(2)          TABI BOOTS(3)\n"
+                  "450 G                   1100 G                   600 G                   300 G\n"
+                  "\nCLOTH ARMOR(4)          BREASTPLATE(5)           HP POT(6)               GIANT HP POT(7)"
+                  "\n400 G                   500 G                    50 G                    100 G\n"
+
+                  "\nEXCALIBUR(8)            GIANT SWORD(9)           VAMPIRIC SWORD(10)      LONGSWORD(11)"
+                  "\n3600 G                  1300 G                   900 G                   350 G\n"
+                  "\nMONEY BAGS(12)          GIANT MONEY BAGS(13)     USELESS ITEM(14)"
+                  "\n150 G                   300 G                    0 G"
+                  "\n_______________________________________"
+                  "__________________________________________\n")
+            selling = input('What do you want to sell? (Type in the number)\n>_ ')
             try:
                 sold = shop[int(selling)]
                 if sold not in your_inv:
                     print('You don\'t have this in your inventory.')
                 if sold in your_inv:
-                    print('You sell a %s.' % sold.name)
+                    print('You sell a %s.\nMONEY NOW: %s.' % (sold.name, you.money))
                     you.money += sold.money
                     your_inv.remove(sold)
-                    you.money += sold.money
                     if sold in armor_shop:
                         max_hp -= sold.health
                     if sold in weapon_shop:
@@ -476,12 +473,25 @@ while True:
         pos = short_directions.index(command)
         command = directions[pos]
 
+        duration = 1000  # millisecond
+        freq = 440  # Hz
+        winsound.Beep(freq, duration)
+
     if command == 'money':
         print(you.money)
 
     if command == 'help':
-        print("Type 'southeast', 'northwest', 'south', 'west', 'east', 'north', 'southwest', 'northeast', 'se', 'nw', "
-              "'s', 'w', 'e', 'n', 'sw', 'ne' to move.")
+        print("Type 'southeast', 'northwest', 'south', 'west', 'east', 'north', 'southwest',\n 'northeast', 'se', 'nw',"
+              "'s', 'w', 'e', 'n', 'sw', 'ne' to move.\nTYPE \'help1\' TO GET MORE HELP.")
+
+    if command == 'help1':
+        print("Type 'fight' to fight, 'stats' for stats, 'hp' to display health,\n"
+              "'money' to display money, 'inv' to display inventory,\n"
+              "'heal' or 'bigheal' to drink potions, and 'fight evil' to fight the boss.\n"
+              "TYPE \'help2\' TO GET MORE HELP.")
+
+    if command == 'help2':
+        print("While in Spawn (North), type 'buy' to buy and 'sell' to sell.")
 
     if command == 'inv':
         for i in your_inv:
@@ -509,14 +519,8 @@ while True:
     elif command not in all_the_commands:
         print("Command not found.")
 
-    print(''
-          ''
-          ''
-          '')
+    print('')
     print("___________________________________________________________________________________")
-    print(''
-          ''
-          ''
-          '')
+    print('')
 
 # Denim Xiong
