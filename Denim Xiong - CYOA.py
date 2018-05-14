@@ -279,6 +279,13 @@ end_gate = Room("End Gate", None, None, None, "spawn_s", None, None, None, None,
 the_end = Room("THE END", None, None, None, 'end_gate', None, None, None, None, 'CHANGE CHANGE CHANGE CHANGE CHANGE',
                Memes)
 
+
+
+
+
+
+
+
 current_node = spawn_n
 directions = ['southeast', 'northwest', 'south', 'west', 'east', 'north', 'southwest', 'northeast']
 short_directions = ['se', 'nw', 's', 'w', 'e', 'n', 'sw', 'ne']
@@ -362,10 +369,10 @@ while True:
         print('_______________________________')
 
     if command == 'me':
-        print('_______________________________')
+        print('_______________________________\n')
         print(you.name)
         print(you.description)
-        print('_______________________________')
+        print('\n_______________________________')
 
     if command == 'buy':
         armor_shop = [viking_helmet, thornmail, giants_belt, tabi_boots, cloth_armor, breastplate]
