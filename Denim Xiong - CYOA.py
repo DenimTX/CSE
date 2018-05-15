@@ -197,15 +197,14 @@ giant_money_bag = Item('Giant money bag', 300, 'A giant bag of gold.')
 
 your_inv = []
 max_hp = 100
-max_inv = [1, 2, 3, 4, 5, 6]
 you = Character("", 100, "", 10, 0, 0, your_inv)
 demon = Enemy("Bull Demon King", 2000, "a giant, tough bull.", 100, 0, 1000000, giant_money_bag, 2000)
 turtle = Enemy("Turtle", 200, "a sturdy blue turtle.", 20, 0, 100, money_bag, 200)
 turtle1 = Enemy("Turtle", 200, "a sturdy blue turtle.", 20, 0, 100, money_bag, 200)
 tiger = Enemy("Tiger", 400, "a ferocious white tiger.", 40, 0, 200, money_bag, 400)
 minion = Enemy("Minion", 50, "a weak minion.", 5, 0, 50, hp_pot, 50)
-Memes = Enemy('All the memes', 10000000000000, 'All the memes', 1000000000000000, 0, 100000000000000000000000000, [],
-              10000000000000)
+Memes = Enemy('All the memes', 5000, 'All the memes', 1000, 0, 1000000, [],
+              5000)
 the_villain = Enemy('Evil Man', 2500, 'a wicked, foul man', 150, 0, 100, useless_item, 2500)
 
 
@@ -225,47 +224,50 @@ phoenix_tower_intersection_n = Room("Phoenix-Tower Intersection (North)", "lane_
 
 turtle_n = Room("Turtle Camp (North)", "bull_demon_king_intersection_n", None, None, None, None,
                 "phoenix_tower_intersection_n", None, None, 'You see two paths, one to the northeast, another to the '
-                                                            ' south, and a turtle.', turtle)
+                                                            ' south, and a turtle.\nThere is a turtle'
+                                                            ' here.', turtle)
 
 bull_demon_king_intersection_n = Room("Bull Demon King Intersection (North)", "bull_demon_king_intersection_s",
                                       "bull_demon_king", "lane_high_middle", "turtle_n", None, None, None, None,
                                       'You see a turtle to the north, a path to the south, and a demon to the'
-                                      ' west.', minion)
+                                      ' west.\nThere is a minion here.', minion)
 
 lane_high_middle = Room("Lane High Middle", "lane_middle", "bull_demon_king_intersection_n", None,
                         "phoenix_tower_intersection_n", None, None, "tiger_camp", None,
                         'You see two paths, one to south, one to the north, a tower to the north, and a tiger to the '
-                        'southeast.', minion)
+                        'southeast.\nThere is a minion here.', minion)
 
 lane_middle = Room("Lane Middle", "lane_low_middle", None, "tiger_camp", "lane_high_middle", None, None,
-                   None, None, 'You see two paths, one to the north, one to the south, and a tiger to the east'
-                               '.', minion)
+                   None, None, 'You see two paths, one to the north, one to the south, and a tiger to the east.'
+                               '\nThere is a minion here.', minion)
 
 lane_low_middle = Room("Lane Low Middle", "phoenix_tower_intersection_s", "bull_demon_king_intersection_s", None,
                        "lane_middle", None, "tiger_camp", None, None, 'You see two paths, one to the west, one to the '
                                                                       'north, a tower to the south, and a tiger to the'
-                                                                      ' northeast.', minion)
+                                                                      ' northeast.\nThere is a minion here.', minion)
 
 tiger_camp = Room("Tiger Camp", None, "lane_middle", None, None, "lane_low_middle", None, None,
-                  "lane_high_middle", 'You see three paths, west, northeast, southeast, and a tiger', tiger)
+                  "lane_high_middle", 'You see three paths, west, northeast, southeast, and a tiger'
+                                      '\nThere is a tiger here.', tiger)
 
 bull_demon_king_intersection_s = Room("Bull Demon King Intersection (South)", "turtle_s", "bull_demon_king",
                                       "lane_low_middle", "bull_demon_king_intersection_n", None, None, None, None,
                                       'You see two paths, one to the north, another to the east, a turtle to the south'
-                                      ', and a demon to the west.', minion)
+                                      ', and a demon to the west.\nThere is a minion here.', minion)
 
 bull_demon_king = Room("Bull Demon King", None, None, None, None, None, "bull_demon_king_intersection_n",
                        "bull_demon_king_intersection_s", None, 'You see two paths, one to the northeast, another to'
-                                                               ' the southeast, and a demon.', demon)
+                                                               ' the southeast, and a demon.\nThere is a demon here.'
+                                                               '', demon)
 
 turtle_s = Room("Turtle Camp (South)", None, None, None, "bull_demon_king_intersection_s", None, None,
                 "phoenix_tower_intersection_s", None, 'You see two paths, one to the north, another to the '
-                                                      'southeast, and a turtle', turtle1)
+                                                      'southeast, and a turtle\nThere is a turtle here.', turtle1)
 
 phoenix_tower_intersection_s = Room("Phoenix-Tower Intersection (South)", None, None, None, "lane_low_middle",
                                     "phoenix_s", None, None, "turtle_s",
                                     'You see a tower to the north, a phoenix to the southwest, and a turtle to the '
-                                    'northwest.', minion)
+                                    'northwest.\nThere is a minion here.', minion)
 
 phoenix_s = Room("Phoenix (South)", None, None, None, None, "spawn_s", "phoenix_tower_intersection_s", None, None,
                  'You see a path to the northeast, a spawn platform to the southwest, and a phoenix.', None)
@@ -279,14 +281,8 @@ end_gate = Room("End Gate", None, None, None, "spawn_s", None, None, None, None,
 the_end = Room("THE END", None, None, None, 'end_gate', None, None, None, None, 'CHANGE CHANGE CHANGE CHANGE CHANGE',
                Memes)
 
-
-
-
-
-
-
-
 current_node = spawn_n
+
 directions = ['southeast', 'northwest', 'south', 'west', 'east', 'north', 'southwest', 'northeast']
 short_directions = ['se', 'nw', 's', 'w', 'e', 'n', 'sw', 'ne']
 all_the_commands = ['buy', 'southeast', 'northwest', 'south', 'west', 'east', 'north', 'southwest', 'northeast',
@@ -329,6 +325,18 @@ while True:
                                        '|_/\_/  \___/\_| \_/\____/\n')
 
     command = input('>_ ').lower().strip()
+
+    # if command == 'song':
+    #     notes = {'C': 0, 'D': 2, 'E': 4, 'F': 5, 'G': 7, 'A': 9, 'B': 11}
+    #
+    #
+    #     def play_note(note, duration=500):
+    #         winsound.Beep(int(256 * (2 ** (notes[note] / 12))), duration)
+    #
+    #
+    #     song = "E E F G G F E D C C D E E D D"
+    #     for note in song.split():
+    #         play_note(note)
 
     if command == 'bigheal':
         if giant_hp_pot in your_inv:
@@ -382,8 +390,8 @@ while True:
 
         if current_node == spawn_n:
 
-            print("---SHOP---"
-                  "\n_________________________________________________________________________________"
+            print("                                ========SHOP========"
+                  "\n________________________________________________________________________________________"
                   "\n\nVIKING HELMET(0)        THORNMAIL(1)             GIANTS BELT(2)          TABI BOOTS(3)"
                   "\n%s health.             %s health.             %s health.             %s health.\n"
                   "450 G                   1100 G                   600 G                   300 G\n"
@@ -397,16 +405,16 @@ while True:
                   "\n3600 G                  1300 G                   900 G                   350 G\n"
                   "\nMONEY BAGS(12)          GIANT MONEY BAGS(13)\n150 G                   300 G"
                   "\n_______________________________________"
-                  "__________________________________________\n" % (viking_helmet.health, thornmail.health,
-                                                                    giants_belt.health, tabi_boots.health,
-                                                                    cloth_armor.health, breastplate.health,
-                                                                    hp_pot.heal, giant_hp_pot.heal,
-                                                                    excalibur.damage, giant_sword.damage,
-                                                                    vampiric_sword.damage, longsword.damage,
-                                                                    excalibur.lifesteal,
-                                                                    giant_sword.lifesteal,
-                                                                    vampiric_sword.lifesteal,
-                                                                    longsword.lifesteal))
+                  "_________________________________________________\n" % (viking_helmet.health, thornmail.health,
+                                                                           giants_belt.health, tabi_boots.health,
+                                                                           cloth_armor.health, breastplate.health,
+                                                                           hp_pot.heal, giant_hp_pot.heal,
+                                                                           excalibur.damage, giant_sword.damage,
+                                                                           vampiric_sword.damage, longsword.damage,
+                                                                           excalibur.lifesteal,
+                                                                           giant_sword.lifesteal,
+                                                                           vampiric_sword.lifesteal,
+                                                                           longsword.lifesteal))
 
             item_buying = input("What do you want to buy? (Type in the number)\nYOUR MONEY: %s\n>_" % you.money)
             try:
@@ -442,8 +450,8 @@ while True:
                 print('[ ' + i.name + ' ]')
             if len(your_inv) == 0:
                 print([])
-            print("---SHOP---"
-                  "\n_________________________________________________________________________________"
+            print("                                ========SHOP========"
+                  "\n________________________________________________________________________________________"
                   "\n\nVIKING HELMET(0)        THORNMAIL(1)             GIANTS BELT(2)          TABI BOOTS(3)\n"
                   "450 G                   1100 G                   600 G                   300 G\n"
                   "\nCLOTH ARMOR(4)          BREASTPLATE(5)           HP POT(6)               GIANT HP POT(7)"
@@ -454,7 +462,7 @@ while True:
                   "\nMONEY BAGS(12)          GIANT MONEY BAGS(13)     USELESS ITEM(14)"
                   "\n150 G                   300 G                    0 G"
                   "\n_______________________________________"
-                  "__________________________________________\n")
+                  "_________________________________________________\n")
             selling = input('What do you want to sell? (Type in the number)\n>_ ')
             try:
                 sold = shop[int(selling)]
@@ -480,9 +488,10 @@ while True:
         pos = short_directions.index(command)
         command = directions[pos]
 
-        duration = 1000  # millisecond
-        freq = 440  # Hz
-        winsound.Beep(freq, duration)
+        # duration = 1000  # millisecond
+        # freq = 440  # Hz
+        # winsound.Beep(freq, duration)
+
 
     if command == 'money':
         print(you.money)
@@ -527,7 +536,8 @@ while True:
         print("Command not found.")
 
     print('')
-    print("___________________________________________________________________________________")
+    print("_______________________________________________________________________________________________"
+          "___")
     print('')
 
 # Denim Xiong
