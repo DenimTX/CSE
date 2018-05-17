@@ -1,5 +1,4 @@
 import random
-import winsound
 
 
 class Item(object):
@@ -257,8 +256,8 @@ bull_demon_king_intersection_s = Room("Bull Demon King Intersection (South)", "t
 
 bull_demon_king = Room("Bull Demon King", None, None, None, None, None, "bull_demon_king_intersection_n",
                        "bull_demon_king_intersection_s", None, 'You see two paths, one to the northeast, another to'
-                                                               ' the southeast, and a demon.\nThere is a demon here.'
-                                                               '', demon)
+                                                               ' the southeast, and a demon.\nThere is a demon here.',
+                       demon)
 
 turtle_s = Room("Turtle Camp (South)", None, None, None, "bull_demon_king_intersection_s", None, None,
                 "phoenix_tower_intersection_s", None, 'You see two paths, one to the north, another to the '
@@ -325,18 +324,6 @@ while True:
                                        '|_/\_/  \___/\_| \_/\____/\n')
 
     command = input('>_ ').lower().strip()
-
-    # if command == 'song':
-    #     notes = {'C': 0, 'D': 2, 'E': 4, 'F': 5, 'G': 7, 'A': 9, 'B': 11}
-    #
-    #
-    #     def play_note(note, duration=500):
-    #         winsound.Beep(int(256 * (2 ** (notes[note] / 12))), duration)
-    #
-    #
-    #     song = "E E F G G F E D C C D E E D D"
-    #     for note in song.split():
-    #         play_note(note)
 
     if command == 'bigheal':
         if giant_hp_pot in your_inv:
@@ -487,11 +474,6 @@ while True:
         # Finds the command in short directions (index number)
         pos = short_directions.index(command)
         command = directions[pos]
-
-        # duration = 1000  # millisecond
-        # freq = 440  # Hz
-        # winsound.Beep(freq, duration)
-
 
     if command == 'money':
         print(you.money)
