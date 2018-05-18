@@ -130,7 +130,8 @@ class Character(object):
     def fight(self, enemy):
         try:
             if enemy == current_node.enemy_in:
-                print('/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\\')
+                print('\n_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-'
+                      '_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_\n')
                 print(you.name + ",", you.description, "starts fighting with %s" % enemy.name + ",", enemy.description)
                 enemy.health = enemy.orig_hp
                 while enemy.health != 0:
@@ -143,7 +144,8 @@ class Character(object):
                     elif choice == enemy:
                         self.hit(enemy)
                         enemy.health += enemy.lifesteal
-                print('/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\\')
+                print('\n-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_'
+                      '-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-')
         except AttributeError:
             print("There's no enemy here you fool.")
 
@@ -275,7 +277,8 @@ spawn_s = Room("Spawn (South)", 'end_gate', None, None, None, None, "phoenix_s",
                'You see a spawn platform and a phoenix to the northeast.', None)
 
 end_gate = Room("End Gate", None, None, None, "spawn_s", None, None, None, None, 'You see a path north and '
-                                                                                 'a dark shadow.', None)
+                                                                                 'a dark shadow.\nThere is a'
+                                                                                 ' dark shadow here.', None)
 
 the_end = Room("THE END", None, None, None, 'end_gate', None, None, None, None, 'CHANGE CHANGE CHANGE CHANGE CHANGE',
                Memes)
@@ -286,7 +289,7 @@ directions = ['southeast', 'northwest', 'south', 'west', 'east', 'north', 'south
 short_directions = ['se', 'nw', 's', 'w', 'e', 'n', 'sw', 'ne']
 all_the_commands = ['buy', 'southeast', 'northwest', 'south', 'west', 'east', 'north', 'southwest', 'northeast',
                     'se', 'nw', 's', 'w', 'e', 'n', 'sw', 'ne', 'hp', 'money', 'help', 'inv', 'fight', 'stats', 'me',
-                    'sell', 'buy', 'bigheal', 'heal', 'fight evil', 'help1', 'help2']
+                    'sell', 'buy', 'bigheal', 'heal', 'fight evil', 'help1', 'help2', 'lol']
 
 character_name = input('\nWhat do you want to be named?\n>_')
 you.name = character_name
@@ -357,7 +360,7 @@ while True:
         print(str(you.health)+'/'+str(max_hp))
 
     if command == 'stats':
-        print('_______________________________')
+        print('_______________________________\n')
         print('MAX HP' + ' - ' + str(max_hp))
         print('ATT' + ' - ' + str(you.attack))
         print('LS' + ' - ' + str(you.lifesteal))
@@ -432,8 +435,8 @@ while True:
                 excalibur, giant_sword, vampiric_sword, longsword, money_bag, giant_money_bag, useless_item]
 
         if current_node == spawn_n:
+            print('YOUR INV:')
             for i in your_inv:
-                print('YOUR INV:')
                 print('[ ' + i.name + ' ]')
             if len(your_inv) == 0:
                 print([])
@@ -479,19 +482,21 @@ while True:
         print(you.money)
 
     if command == 'help':
-        print("Type 'southeast', 'northwest', 'south', 'west', 'east', 'north', 'southwest',\n 'northeast', 'se', 'nw',"
+        print("\nType 'southeast', 'northwest', 'south', 'west', 'east', 'north', 'southwest',\n 'northeast', 'se', "
+              "'nw',"
               "'s', 'w', 'e', 'n', 'sw', 'ne' to move.\nTYPE \'help1\' TO GET MORE HELP.")
 
     if command == 'help1':
-        print("Type 'fight' to fight, 'stats' for stats, 'hp' to display health,\n"
+        print("\nType 'fight' to fight, 'stats' for stats, 'hp' to display health,\n"
               "'money' to display money, 'inv' to display inventory,\n"
               "'heal' or 'bigheal' to drink potions, and 'fight evil' to fight the boss.\n"
               "TYPE \'help2\' TO GET MORE HELP.")
 
     if command == 'help2':
-        print("While in Spawn (North), type 'buy' to buy and 'sell' to sell.")
+        print("\nWhile in Spawn (North), type 'buy' to buy and 'sell' to sell.")
 
     if command == 'inv':
+        print("YOUR INV:")
         for i in your_inv:
             print('[ ' + i.name + ' ]')
         if len(your_inv) == 0:
@@ -509,6 +514,11 @@ while True:
         else:
             print('You are not the chosen one.')
 
+    # EASTER EGGS?
+
+    if command == "lol":
+        print("HaHaHaHaHaHa so funny!")
+
     if command in directions:
         try:
             current_node.move(command)
@@ -517,9 +527,6 @@ while True:
     elif command not in all_the_commands:
         print("Command not found.")
 
-    print('')
-    print("_______________________________________________________________________________________________"
-          "___")
-    print('')
+    print("\n__________________________________________________________________________________________________\n")
 
 # Denim Xiong
