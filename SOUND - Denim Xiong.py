@@ -7,10 +7,6 @@ def play_note(note, duration=250):
     winsound.Beep(int(256 * (2 ** (notes[note] / 12))), duration)
 
 
-song = "E D C D E E E D D D C C C"
+song = "A A A B A A E A A B B B A B A B A A"
 for note in song.split():
-    play_note(note)
-
-song1 = "E D C D E E E E D D E D C"
-for note in song1.split():
     play_note(note)

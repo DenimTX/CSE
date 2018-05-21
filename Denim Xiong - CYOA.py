@@ -514,10 +514,12 @@ while True:
         else:
             print('You are not the chosen one.')
 
-    # EASTER EGGS?
+    # EASTER EGGS START
 
     if command == "lol":
         print("HaHaHaHaHaHa so funny!")
+
+    # EASTER EGGS END
 
     if command in directions:
         try:
@@ -530,4 +532,3 @@ while True:
     print("\n__________________________________________________________________________________________________\n")
 
 # Denim Xiong
-print("ayo")
